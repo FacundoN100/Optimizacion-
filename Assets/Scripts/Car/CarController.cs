@@ -48,11 +48,13 @@ public class CarController : MonoBehaviour
             MoveForce += transform.forward * MoveSpeed * input.y * Time.fixedDeltaTime;
             MoveForce *= Drag;
             MoveForce = Vector3.ClampMagnitude(MoveForce, MaxSpeed);
-            MoveForce = Vector3.Lerp(MoveForce.normalized, transform.forward, Traction * Time.fixedDeltaTime) * MoveForce.magnitude;
+            //MoveForce = Vector3.Lerp(MoveForce.normalized, transform.forward, Traction * Time.fixedDeltaTime) * MoveForce.magnitude;
             Vector3 desiredVelocity = MoveForce;
             Vector3 velChange = desiredVelocity - rb.velocity;
             rb.AddForce(velChange, ForceMode.VelocityChange);
-            float yaw = input.x * MoveForce.magnitude * SteerAngle * Time.fixedDeltaTime;
+            // float yaw = input.x * MoveForce.magnitude * SteerAngle * Time.fixedDeltaTime;
+            float signedSpeed = Vector3.Dot(MoveForce, transform.forward);//nuevo
+            float yaw = input.x * signedSpeed * SteerAngle * Time.fixedDeltaTime;//nuevo
             Quaternion deltaRot = Quaternion.Euler(0f, yaw, 0f);
             rb.MoveRotation(rb.rotation * deltaRot);
             rb.AddForce(-transform.up * Downforce, ForceMode.Acceleration);
