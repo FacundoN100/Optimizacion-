@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SkinSelectorUI : MonoBehaviour
+[Serializable]
+public sealed class SkinSelectorUI
 {
     [SerializeField] private Sprite[] skins;
     [SerializeField] private string[] skinNames;
@@ -14,17 +16,23 @@ public class SkinSelectorUI : MonoBehaviour
     private int currentSkin;
     private const string SkinPreferenceKey = "SelectedCarMaterial";
 
-    private void Start()
+    public bool IsConfigured => skinPreview != null && skinNameText != null && SkinCount > 0;
+
+    private int SkinCount => Mathf.Min(skins?.Length ?? 0,
+        Mathf.Min(skinNames?.Length ?? 0, materialAddress?.Length ?? 0));
+
+    public void Initialize()
     {
-        currentSkin = PlayerPrefs.GetInt("SelectedSkinIndex", 0);
+        currentSkin = Mathf.Clamp(PlayerPrefs.GetInt("SelectedSkinIndex", 0), 0, SkinCount - 1);
         UpdateUI();
     }
 
     public void NextSkin()
     {
+        if (!IsConfigured) return;
         currentSkin++;
 
-        if (currentSkin >= skins.Length)
+        if (currentSkin >= SkinCount)
             currentSkin = 0;
 
         UpdateUI();
@@ -33,10 +41,11 @@ public class SkinSelectorUI : MonoBehaviour
 
     public void PreviousSkin()
     {
+        if (!IsConfigured) return;
         currentSkin--;
 
         if (currentSkin < 0)
-            currentSkin = skins.Length - 1;
+            currentSkin = SkinCount - 1;
 
         UpdateUI();
         SaveSelection();

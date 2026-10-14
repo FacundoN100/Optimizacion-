@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScriptMenu : MonoBehaviour
+[Serializable]
+public sealed class ScriptMenu
 {
     [SerializeField] private GameObject MenuPanel;
     [SerializeField] private GameObject OptionsPanel;
@@ -10,7 +12,9 @@ public class ScriptMenu : MonoBehaviour
     [SerializeField] private GameObject CreditsPanel;
     [SerializeField] private GameObject ExitPanel;
     [SerializeField] private GameObject SkinPanel;
-    void Awake()
+    public bool IsConfigured => MenuPanel != null;
+
+    public void Initialize()
     {
         int anchoObjetivo = 1334;
         int altoObjetivo = 720;
@@ -19,9 +23,6 @@ public class ScriptMenu : MonoBehaviour
         {
             Screen.SetResolution(anchoObjetivo, altoObjetivo, true);
         }
-    }
-    void Start()
-    {
         Application.targetFrameRate = 63;
     }
     public void Play()

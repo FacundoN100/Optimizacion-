@@ -374,7 +374,6 @@ GameObject:
   m_Component:
   - component: {fileID: 142310013}
   - component: {fileID: 142310012}
-  - component: {fileID: 142310014}
   m_Layer: 5
   m_Name: SkinsPanel
   m_TagString: Untagged
@@ -416,32 +415,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1612, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &142310014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142310010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88676aa1bb3349142932576f108f3a43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skins:
-  - {fileID: 21300000, guid: 4d4eb4d232a818147964ec0bd6660bc0, type: 3}
-  - {fileID: 21300000, guid: fc0bb7a8897362849bb775878e439958, type: 3}
-  - {fileID: 21300000, guid: 054d535e374d8ab488b03aca33fa7f48, type: 3}
-  skinNames:
-  - Default
-  - Skin 1
-  - Skin 2
-  materialAddress:
-  - Color_Blue
-  - Color_Orange
-  - Color_Red
-  skinPreview: {fileID: 163458778}
-  skinNameText: {fileID: 550190894}
 --- !u!1 &154872768
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,8 +619,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142310014}
-        m_TargetAssemblyTypeName: SkinSelectorUI, Assembly-CSharp
+      - m_Target: {fileID: 533757594}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: NextSkin
         m_Mode: 1
         m_Arguments:
@@ -779,8 +752,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142310014}
-        m_TargetAssemblyTypeName: SkinSelectorUI, Assembly-CSharp
+      - m_Target: {fileID: 533757594}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: PreviousSkin
         m_Mode: 1
         m_Arguments:
@@ -1371,7 +1344,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: backOptions
         m_Mode: 1
         m_Arguments:
@@ -1778,7 +1751,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AudioAndVideo
         m_Mode: 1
         m_Arguments:
@@ -2185,7 +2158,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ExitYes
         m_Mode: 1
         m_Arguments:
@@ -2454,7 +2427,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ControlsBackOption
         m_Mode: 1
         m_Arguments:
@@ -2529,16 +2502,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 533757593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d829ab7a148935e4c82cbc427622e743, type: 3}
+  m_Script: {fileID: 11500000, guid: be498c0ade1ae1249977f965bb7e9898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuPanel: {fileID: 1645417117}
-  OptionsPanel: {fileID: 736170242}
-  AudioAndVideoPanel: {fileID: 154872768}
-  ControllsPanel: {fileID: 275329064}
-  CreditsPanel: {fileID: 1658371468}
-  ExitPanel: {fileID: 1173903399}
-  SkinPanel: {fileID: 142310010}
+  pointsArcs: []
+  arcsToActivate: 0
+  menu:
+    MenuPanel: {fileID: 1645417117}
+    OptionsPanel: {fileID: 736170242}
+    AudioAndVideoPanel: {fileID: 154872768}
+    ControllsPanel: {fileID: 275329064}
+    CreditsPanel: {fileID: 1658371468}
+    ExitPanel: {fileID: 1173903399}
+    SkinPanel: {fileID: 142310010}
+  skinSelector:
+    skins:
+    - {fileID: 21300000, guid: 4d4eb4d232a818147964ec0bd6660bc0, type: 3}
+    - {fileID: 21300000, guid: fc0bb7a8897362849bb775878e439958, type: 3}
+    - {fileID: 21300000, guid: 054d535e374d8ab488b03aca33fa7f48, type: 3}
+    skinNames:
+    - Default
+    - Skin 1
+    - Skin 2
+    materialAddress:
+    - Color_Blue
+    - Color_Orange
+    - Color_Red
+    skinPreview: {fileID: 163458778}
+    skinNameText: {fileID: 550190894}
+  modelObjects: []
 --- !u!4 &533757595
 Transform:
   m_ObjectHideFlags: 0
@@ -3481,7 +3473,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AudioAndVideoBackOption
         m_Mode: 1
         m_Arguments:
@@ -3963,7 +3955,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: BackSkins
         m_Mode: 1
         m_Arguments:
@@ -4096,7 +4088,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -4486,7 +4478,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: controls
         m_Mode: 1
         m_Arguments:
@@ -4911,7 +4903,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ExitNot
         m_Mode: 1
         m_Arguments:
@@ -5415,7 +5407,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -5548,7 +5540,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Options
         m_Mode: 1
         m_Arguments:
@@ -5770,7 +5762,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: backCredts
         m_Mode: 1
         m_Arguments:
@@ -5978,7 +5970,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -6523,7 +6515,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 533757594}
-        m_TargetAssemblyTypeName: ScriptMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: credits
         m_Mode: 1
         m_Arguments:

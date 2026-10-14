@@ -1,99 +1,75 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Clock : MonoBehaviour
+[Serializable]
+public sealed class Clock
 {
-    public static Clock Instance { get; private set; }
-    [Header("Time")]
     [SerializeField] private float maxTime = 100f;
-    private float currentTime;
-
-    [Header("UI")]
-    [Tooltip("Image con Type = Filled y Fill Method = Radial")]
     [SerializeField] private Image timeFillImage;
-
-    [Header("Death")]
     [SerializeField] private Canvas deathImage;
-
     [SerializeField] private TextMeshProUGUI fpsText;
-    [SerializeField] private CarController carController;
+    [SerializeField] private GameObject owner;
+
+    private Action onTimeExpired;
+    private float currentTime;
     private float timer;
     private int frameCount;
+    private bool canStart;
+    private bool isDead;
+    private bool stopped;
 
-    private bool canStart = false;
-    private bool IsDead = false;
+    public bool IsConfigured => owner != null;
 
-    private void Awake()
+    public void Initialize(Action timeExpired)
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        if (currentTime <= 0f) currentTime = maxTime;
-        UpdateUIInstant();
-        if (deathImage != null) deathImage.enabled = false;
-        IsDead = false;
+        onTimeExpired = timeExpired;
+        currentTime = maxTime;
+        timer = 0f;
+        frameCount = 0;
         canStart = false;
+        isDead = false;
+        stopped = false;
+        RefreshTime();
+        if (deathImage != null) deathImage.enabled = false;
     }
 
-    private void Update()
+    public void Tick(float deltaTime, float unscaledDeltaTime)
     {
-        if (canStart)
+        if (stopped || owner == null || !owner.activeInHierarchy) return;
+        if (canStart && !isDead)
         {
-            CountTime();
+            currentTime = Mathf.Clamp(currentTime - deltaTime, 0f, maxTime);
+            RefreshTime();
+            if (currentTime <= 0f)
+            {
+                isDead = true;
+                if (deathImage != null) deathImage.enabled = true;
+                onTimeExpired?.Invoke();
+            }
         }
         frameCount++;
-        timer += Time.unscaledDeltaTime;
+        timer += unscaledDeltaTime;
         if (timer >= 0.5f)
         {
-
-            float fps = frameCount / timer;
-
-            fpsText.SetText("{0:0} FPS", fps);
-
+            if (fpsText != null) fpsText.SetText("{0:0} FPS", frameCount / timer);
             frameCount = 0;
-
             timer = 0f;
-
         }
     }
 
-    public void CountTime()
-    {
-        if (IsDead) return;
-        currentTime -= Time.deltaTime;
-        currentTime = Mathf.Clamp(currentTime, 0f, maxTime);
-        UpdateUIInstant();
-
-        if (currentTime <= 0f && !IsDead)
-        {
-            OnDeath();
-        }
-    }
-
-    private void UpdateUIInstant()
+    private void RefreshTime()
     {
         if (timeFillImage != null)
-            timeFillImage.fillAmount = currentTime / maxTime;
+            timeFillImage.fillAmount = maxTime > 0f ? currentTime / maxTime : 0f;
     }
 
-    private void OnDeath()
-    {
-        IsDead = true;
-        if (deathImage != null) deathImage.enabled = true;
-        carController.ImDead(false);
-    }
+    public void StartCounting() => canStart = true;
 
-    public void SelfDestroy()
+    public void Stop()
     {
-        this.gameObject.SetActive(false);
-    }
-
-    public void NowYouCanCount()
-    {
-        canStart = true;
+        stopped = true;
+        if (owner != null) owner.SetActive(false);
     }
 }

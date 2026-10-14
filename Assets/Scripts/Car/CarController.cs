@@ -1,84 +1,68 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-public class CarController : MonoBehaviour
+[Serializable]
+public sealed class CarController
 {
-    // Settings
     [SerializeField] private float MoveSpeed = 50f;
     [SerializeField] private float MaxSpeed = 15f;
     [SerializeField] private float Drag = 0.98f;
     [SerializeField] private float DriftSteerAngle = 20f;
     [SerializeField] private float Traction = 1f;
-    [SerializeField] private float Downforce = 5f; // nuevo: intensidad del downforce
-    private float SteerAngle = 20f;
-    private PlayerInput playerInput;
-    private Vector2 input;
-    private bool isDrifting;
+    [SerializeField] private float Downforce = 5f;
+    [SerializeField] private Rigidbody body;
+    [SerializeField] private PlayerInput playerInput;
 
-    // Variables
-    private Vector3 MoveForce;
-    private Rigidbody rb;
+    private InputAction moveAction;
+    private Vector3 moveForce;
+    private bool isDrifting;
     private bool canMove;
 
-    void Start()
+    public bool IsConfigured => body != null && playerInput != null;
+
+    public void Initialize()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        rb.centerOfMass = new Vector3(0f, -0.5f, 0f);
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-        playerInput = GetComponent<PlayerInput>();
+        body.constraints = RigidbodyConstraints.FreezeRotationX
+            | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        body.centerOfMass = new Vector3(0f, -0.5f, 0f);
+        body.interpolation = RigidbodyInterpolation.Interpolate;
+        moveForce = Vector3.zero;
+        moveAction = null;
         isDrifting = false;
         canMove = true;
     }
 
-    void FixedUpdate()
+    public void TickPhysics(float deltaTime)
     {
-        if (canMove)
+        if (!IsConfigured || !body.gameObject.activeInHierarchy) return;
+        if (!canMove)
         {
-            input = playerInput.actions["Move"].ReadValue<Vector2>();
-            if (isDrifting)
-            {
-                SteerAngle = DriftSteerAngle;
-            }
-            else
-            {
-                SteerAngle = DriftSteerAngle / 2;
-            }
-            MoveForce += transform.forward * MoveSpeed * input.y * Time.fixedDeltaTime;
-            MoveForce *= Drag;
-            MoveForce = Vector3.ClampMagnitude(MoveForce, MaxSpeed);
-            //MoveForce = Vector3.Lerp(MoveForce.normalized, transform.forward, Traction * Time.fixedDeltaTime) * MoveForce.magnitude;
-            Vector3 desiredVelocity = MoveForce;
-            Vector3 velChange = desiredVelocity - rb.velocity;
-            rb.AddForce(velChange, ForceMode.VelocityChange);
-            // float yaw = input.x * MoveForce.magnitude * SteerAngle * Time.fixedDeltaTime;
-            float signedSpeed = Vector3.Dot(MoveForce, transform.forward);//nuevo
-            float yaw = input.x * signedSpeed * SteerAngle * Time.fixedDeltaTime;//nuevo
-            Quaternion deltaRot = Quaternion.Euler(0f, yaw, 0f);
-            rb.MoveRotation(rb.rotation * deltaRot);
-            rb.AddForce(-transform.up * Downforce, ForceMode.Acceleration);
+            body.velocity = Vector3.zero;
+            return;
         }
-        else
-        {
-            rb.velocity = Vector3.zero;
-        }
+
+        // Resolve after PlayerInput has enabled its private action map.
+        if (moveAction == null) moveAction = playerInput.actions.FindAction("Move", true);
+        Vector2 input = moveAction.ReadValue<Vector2>();
+        Transform carTransform = body.transform;
+        float steerAngle = isDrifting ? DriftSteerAngle : DriftSteerAngle / 2f;
+        moveForce += carTransform.forward * MoveSpeed * input.y * deltaTime;
+        moveForce *= Drag;
+        moveForce = Vector3.ClampMagnitude(moveForce, MaxSpeed);
+        // Traction remains disabled, as in the existing controller.
+        body.AddForce(moveForce - body.velocity, ForceMode.VelocityChange);
+        float signedSpeed = Vector3.Dot(moveForce, carTransform.forward);
+        float yaw = input.x * signedSpeed * steerAngle * deltaTime;
+        body.MoveRotation(body.rotation * Quaternion.Euler(0f, yaw, 0f));
+        body.AddForce(-carTransform.up * Downforce, ForceMode.Acceleration);
     }
 
-    public void Break(InputAction.CallbackContext callbackContext)
+    public void Break(InputAction.CallbackContext context)
     {
-        if(callbackContext.performed)
-        {
-            isDrifting = true;
-        }
-        else if(callbackContext.canceled)
-        {
-            isDrifting = false;
-        }
+        if (context.performed) isDrifting = true;
+        else if (context.canceled) isDrifting = false;
     }
 
-    public void ImDead(bool state)
-    {
-        canMove = state;
-    }
+    public void SetMovementEnabled(bool value) => canMove = value;
 }

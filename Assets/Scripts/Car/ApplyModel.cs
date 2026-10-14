@@ -1,78 +1,92 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class ApplyModel : MonoBehaviour
+public sealed class ApplyModel : IDisposable
 {
-    private string materialAddress = "Color_Red";
     private const string SkinPreferenceKey = "SelectedCarMaterial";
-
-    private Renderer objectRenderer;
+    private readonly Renderer[] renderers;
     private AsyncOperationHandle<Material> materialHandle;
+    private AsyncOperationHandle catalogHandle;
+    private AsyncOperationHandle cacheHandle;
+    private string materialAddress;
+    private bool disposed;
+    private bool updatingCatalog;
 
-    private void Awake()
+    public ApplyModel(Renderer[] targets)
     {
-        objectRenderer = GetComponent<Renderer>();
-    }
-
-    private void Start()
-    {
-        if (PlayerPrefs.HasKey(SkinPreferenceKey))
-        {
-            materialAddress = PlayerPrefs.GetString(SkinPreferenceKey);
-        }
-
-        LoadMaterial();
+        renderers = targets ?? Array.Empty<Renderer>();
     }
 
     public void LoadMaterial()
     {
+        if (disposed || renderers.Length == 0) return;
+        ReleaseMaterial();
+        materialAddress = PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red");
         materialHandle = Addressables.LoadAssetAsync<Material>(materialAddress);
         materialHandle.Completed += OnMaterialLoaded;
     }
 
     private void OnMaterialLoaded(AsyncOperationHandle<Material> handle)
     {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
+        if (disposed || !handle.Equals(materialHandle)
+            || handle.Status != AsyncOperationStatus.Succeeded) return;
+        foreach (Renderer target in renderers)
         {
-            objectRenderer.material = handle.Result;
+            if (target != null) target.sharedMaterial = handle.Result;
         }
     }
 
-    private void OnDestroy()
+    public IEnumerator UpdateCatalog()
     {
-        if (materialHandle.IsValid())
+        if (disposed || updatingCatalog) yield break;
+        updatingCatalog = true;
+        try
         {
-            Addressables.Release(materialHandle);
+            // Own the handles explicitly, including when the scene is unloaded.
+            catalogHandle = Addressables.UpdateCatalogs(null, false);
+            yield return catalogHandle;
+            if (disposed || catalogHandle.Status != AsyncOperationStatus.Succeeded) yield break;
+            Release(ref catalogHandle);
+
+            ReleaseMaterial();
+            materialAddress = PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red");
+            cacheHandle = Addressables.ClearDependencyCacheAsync(materialAddress, false);
+            yield return cacheHandle;
+            if (disposed) yield break;
+            Release(ref cacheHandle);
+            LoadMaterial();
+        }
+        finally
+        {
+            Release(ref catalogHandle);
+            Release(ref cacheHandle);
+            updatingCatalog = false;
         }
     }
 
-    public void UpdateCatalog()
+    private void ReleaseMaterial()
     {
-        StartCoroutine(UpdateCatalogAndReload());
+        if (!materialHandle.IsValid()) return;
+        materialHandle.Completed -= OnMaterialLoaded;
+        Addressables.Release(materialHandle);
+        materialHandle = default;
     }
-    
-    private IEnumerator UpdateCatalogAndReload()
+
+    private static void Release(ref AsyncOperationHandle handle)
     {
-        var updateHandle = Addressables.UpdateCatalogs();
-        yield return updateHandle;
-        Addressables.Release(updateHandle);
+        if (handle.IsValid()) Addressables.Release(handle);
+        handle = default;
+    }
 
-        if (materialHandle.IsValid())
-        {
-            Addressables.Release(materialHandle);
-        }
-
-        var clearHandle = Addressables.ClearDependencyCacheAsync(materialAddress, false);
-        yield return clearHandle;
-        Addressables.Release(clearHandle);
-
-        if (PlayerPrefs.HasKey(SkinPreferenceKey))
-        {
-            materialAddress = PlayerPrefs.GetString(SkinPreferenceKey);
-        }
-
-        LoadMaterial();
+    public void Dispose()
+    {
+        if (disposed) return;
+        disposed = true;
+        ReleaseMaterial();
+        Release(ref catalogHandle);
+        Release(ref cacheHandle);
     }
 }

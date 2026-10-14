@@ -8,7 +8,7 @@ public class FinishLine : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI finalPointsText;
-    [SerializeField] private Clock clock;
+    [SerializeField] private GameManager gameManager;
     private float timeSpend;
     private int score = 0;
     private int points = 0;
@@ -22,7 +22,7 @@ public class FinishLine : MonoBehaviour
             finalPointsText.SetText("{0}", points);
             score = (Mathf.Max(0, (int)(100 - timeSpend)) + 1) * ((int)(points * 10) + 1);
             scoreText.SetText("{0}", score);
-            clock.SelfDestroy();
+            gameManager.StopClock();
             VictoryImage.enabled = true;
         }
     }
