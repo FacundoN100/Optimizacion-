@@ -45,7 +45,6 @@ public sealed class ApplyModel : IDisposable
         updatingCatalog = true;
         try
         {
-            // Own the handles explicitly, including when the scene is unloaded.
             catalogHandle = Addressables.UpdateCatalogs(null, false);
             yield return catalogHandle;
             if (disposed || catalogHandle.Status != AsyncOperationStatus.Succeeded) yield break;

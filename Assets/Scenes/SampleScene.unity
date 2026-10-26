@@ -732,10 +732,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 25301088}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 25301087}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &25301086
 GameObject:
@@ -750,7 +746,6 @@ GameObject:
   - component: {fileID: 25301090}
   - component: {fileID: 25301089}
   - component: {fileID: 25301088}
-  - component: {fileID: 25301087}
   m_Layer: 0
   m_Name: Points (35)
   m_TagString: Untagged
@@ -758,19 +753,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &25301087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25301086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &25301088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1317,10 +1299,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dbeac59f6f91ace48a8d97d5a54cc22b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 54048867}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dbeac59f6f91ace48a8d97d5a54cc22b,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 54048866}
   m_SourcePrefab: {fileID: 100100000, guid: dbeac59f6f91ace48a8d97d5a54cc22b, type: 3}
 --- !u!1 &54048865
@@ -1335,7 +1313,6 @@ GameObject:
   - component: {fileID: 54048870}
   - component: {fileID: 54048869}
   - component: {fileID: 54048868}
-  - component: {fileID: 54048867}
   - component: {fileID: 54048866}
   m_Layer: 0
   m_Name: HighWaySign
@@ -1365,24 +1342,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04750995, y: 0.056980934, z: 0.01}
   m_Center: {x: -0.00012293652, y: -0.018817594, z: 0}
---- !u!114 &54048867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54048865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a320da5cc78c140b99dc160561e131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VictoryImage: {fileID: 15563514}
-  timeText: {fileID: 978813411}
-  scoreText: {fileID: 1307089742}
-  pointsText: {fileID: 1362936900}
-  finalPointsText: {fileID: 935905589}
-  gameManager: {fileID: 195136888}
 --- !u!23 &54048868
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2556,7 +2515,6 @@ GameObject:
   - component: {fileID: 139837878}
   - component: {fileID: 139837877}
   - component: {fileID: 139837872}
-  - component: {fileID: 139837876}
   m_Layer: 0
   m_Name: Points
   m_TagString: Untagged
@@ -2585,19 +2543,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.012173288, y: 0.15393579, z: 0.09150291}
   m_Center: {x: 0.000581665, y: -0.001061792, z: -0.006935861}
---- !u!114 &139837876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139837871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!23 &139837877
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2760,10 +2705,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 150053431}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 150053430}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &150053429
 GameObject:
@@ -2778,7 +2719,6 @@ GameObject:
   - component: {fileID: 150053433}
   - component: {fileID: 150053432}
   - component: {fileID: 150053431}
-  - component: {fileID: 150053430}
   m_Layer: 0
   m_Name: Points (32)
   m_TagString: Untagged
@@ -2786,19 +2726,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &150053430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150053429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &150053431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3200,10 +3127,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 194061752}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 194061751}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &194061750
 GameObject:
@@ -3218,7 +3141,6 @@ GameObject:
   - component: {fileID: 194061754}
   - component: {fileID: 194061753}
   - component: {fileID: 194061752}
-  - component: {fileID: 194061751}
   m_Layer: 0
   m_Name: Points (26)
   m_TagString: Untagged
@@ -3226,19 +3148,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &194061751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194061750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &194061752
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3330,30 +3239,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!1 &195136887
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 195136889}
-  - component: {fileID: 195136888}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &195136888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195136887}
+  m_GameObject: {fileID: 409671282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be498c0ade1ae1249977f965bb7e9898, type: 3}
@@ -3628,21 +3520,52 @@ MonoBehaviour:
   - {fileID: 2120014356}
   - {fileID: 2129650702}
   - {fileID: 2142128247}
---- !u!4 &195136889
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195136887}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  finishLine:
+    VictoryImage: {fileID: 15563514}
+    timeText: {fileID: 978813411}
+    scoreText: {fileID: 1307089742}
+    pointsText: {fileID: 1362936900}
+    finalPointsText: {fileID: 935905589}
+    trigger: {fileID: 54048866}
+  collectibleArcs:
+  - trigger: {fileID: 25301088}
+  - trigger: {fileID: 139837872}
+  - trigger: {fileID: 150053431}
+  - trigger: {fileID: 194061752}
+  - trigger: {fileID: 218956924}
+  - trigger: {fileID: 229331307}
+  - trigger: {fileID: 270990244}
+  - trigger: {fileID: 316403477}
+  - trigger: {fileID: 322437087}
+  - trigger: {fileID: 426539639}
+  - trigger: {fileID: 434129810}
+  - trigger: {fileID: 518175337}
+  - trigger: {fileID: 564789917}
+  - trigger: {fileID: 567389002}
+  - trigger: {fileID: 609542328}
+  - trigger: {fileID: 655308617}
+  - trigger: {fileID: 720049300}
+  - trigger: {fileID: 1197845026}
+  - trigger: {fileID: 1397707559}
+  - trigger: {fileID: 1413998423}
+  - trigger: {fileID: 1431389712}
+  - trigger: {fileID: 1438111862}
+  - trigger: {fileID: 1497979936}
+  - trigger: {fileID: 1679751326}
+  - trigger: {fileID: 1800976253}
+  - trigger: {fileID: 1850983962}
+  - trigger: {fileID: 1883860343}
+  - trigger: {fileID: 1884123679}
+  - trigger: {fileID: 1920163181}
+  - trigger: {fileID: 1970570156}
+  - trigger: {fileID: 1974239738}
+  - trigger: {fileID: 1982235901}
+  - trigger: {fileID: 2016503654}
+  - trigger: {fileID: 2032822125}
+  - trigger: {fileID: 2076669382}
+  - trigger: {fileID: 2092830020}
+  - trigger: {fileID: 2114546971}
+  - trigger: {fileID: 2116602588}
 --- !u!1001 &197454581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4221,10 +4144,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 218956924}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 218956923}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &218956922
 GameObject:
@@ -4239,7 +4158,6 @@ GameObject:
   - component: {fileID: 218956926}
   - component: {fileID: 218956925}
   - component: {fileID: 218956924}
-  - component: {fileID: 218956923}
   m_Layer: 0
   m_Name: Points (19)
   m_TagString: Untagged
@@ -4247,19 +4165,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &218956923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218956922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &218956924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4686,10 +4591,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 229331307}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 229331306}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &229331305
 GameObject:
@@ -4704,7 +4605,6 @@ GameObject:
   - component: {fileID: 229331309}
   - component: {fileID: 229331308}
   - component: {fileID: 229331307}
-  - component: {fileID: 229331306}
   m_Layer: 0
   m_Name: Points (11)
   m_TagString: Untagged
@@ -4712,19 +4612,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &229331306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229331305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &229331307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5205,10 +5092,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 270990244}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 270990243}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &270990242
 GameObject:
@@ -5223,7 +5106,6 @@ GameObject:
   - component: {fileID: 270990246}
   - component: {fileID: 270990245}
   - component: {fileID: 270990244}
-  - component: {fileID: 270990243}
   m_Layer: 0
   m_Name: Points (21)
   m_TagString: Untagged
@@ -5231,19 +5113,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &270990243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270990242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &270990244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6326,10 +6195,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 316403477}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 316403476}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &316403475
 GameObject:
@@ -6344,7 +6209,6 @@ GameObject:
   - component: {fileID: 316403479}
   - component: {fileID: 316403478}
   - component: {fileID: 316403477}
-  - component: {fileID: 316403476}
   m_Layer: 0
   m_Name: Points (12)
   m_TagString: Untagged
@@ -6352,19 +6216,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &316403476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316403475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &316403477
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6652,10 +6503,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 322437087}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 322437086}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &322437085
 GameObject:
@@ -6670,7 +6517,6 @@ GameObject:
   - component: {fileID: 322437089}
   - component: {fileID: 322437088}
   - component: {fileID: 322437087}
-  - component: {fileID: 322437086}
   m_Layer: 0
   m_Name: Points (37)
   m_TagString: Untagged
@@ -6678,19 +6524,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &322437086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322437085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &322437087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7571,6 +7404,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1b6863699f90f149877ea7295ca0d0f,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 195136888}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1b6863699f90f149877ea7295ca0d0f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 195136888}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1b6863699f90f149877ea7295ca0d0f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 195136888}
+  m_SourcePrefab: {fileID: 100100000, guid: a1b6863699f90f149877ea7295ca0d0f, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1b6863699f90f149877ea7295ca0d0f,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 409671284}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1b6863699f90f149877ea7295ca0d0f,
         type: 3}
@@ -7590,6 +7436,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 195136888}
   - component: {fileID: 409671285}
   - component: {fileID: 409671292}
   - component: {fileID: 409671291}
@@ -7782,7 +7629,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415907287}
-  - component: {fileID: 415907288}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -7805,18 +7651,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &415907288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415907286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e5789856c70f2488ef3579f21d0318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &417909882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8018,10 +7852,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 426539639}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 426539638}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &426539637
 GameObject:
@@ -8036,7 +7866,6 @@ GameObject:
   - component: {fileID: 426539641}
   - component: {fileID: 426539640}
   - component: {fileID: 426539639}
-  - component: {fileID: 426539638}
   m_Layer: 0
   m_Name: Points (30)
   m_TagString: Untagged
@@ -8044,19 +7873,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &426539638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426539637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &426539639
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8240,10 +8056,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 434129810}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 434129809}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &434129808
 GameObject:
@@ -8258,7 +8070,6 @@ GameObject:
   - component: {fileID: 434129812}
   - component: {fileID: 434129811}
   - component: {fileID: 434129810}
-  - component: {fileID: 434129809}
   m_Layer: 0
   m_Name: Points (33)
   m_TagString: Untagged
@@ -8266,19 +8077,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &434129809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434129808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &434129810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8998,8 +8796,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415907288}
-        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+      - m_Target: {fileID: 195136888}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
@@ -9378,10 +9176,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 518175337}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 518175336}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &518175335
 GameObject:
@@ -9396,7 +9190,6 @@ GameObject:
   - component: {fileID: 518175339}
   - component: {fileID: 518175338}
   - component: {fileID: 518175337}
-  - component: {fileID: 518175336}
   m_Layer: 0
   m_Name: Points (10)
   m_TagString: Untagged
@@ -9404,19 +9197,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &518175336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518175335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &518175337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10117,10 +9897,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 564789917}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 564789916}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &564789915
 GameObject:
@@ -10135,7 +9911,6 @@ GameObject:
   - component: {fileID: 564789919}
   - component: {fileID: 564789918}
   - component: {fileID: 564789917}
-  - component: {fileID: 564789916}
   m_Layer: 0
   m_Name: Points (27)
   m_TagString: Untagged
@@ -10143,19 +9918,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &564789916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564789915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &564789917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10339,10 +10101,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 567389002}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 567389001}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &567389000
 GameObject:
@@ -10357,7 +10115,6 @@ GameObject:
   - component: {fileID: 567389004}
   - component: {fileID: 567389003}
   - component: {fileID: 567389002}
-  - component: {fileID: 567389001}
   m_Layer: 0
   m_Name: Points (7)
   m_TagString: Untagged
@@ -10365,19 +10122,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &567389001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567389000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &567389002
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10660,10 +10404,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 609542328}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 609542327}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &609542326
 GameObject:
@@ -10678,7 +10418,6 @@ GameObject:
   - component: {fileID: 609542330}
   - component: {fileID: 609542329}
   - component: {fileID: 609542328}
-  - component: {fileID: 609542327}
   m_Layer: 0
   m_Name: Points (1)
   m_TagString: Untagged
@@ -10686,19 +10425,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &609542327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609542326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &609542328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11328,10 +11054,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 655308617}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 655308616}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &655308615
 GameObject:
@@ -11346,7 +11068,6 @@ GameObject:
   - component: {fileID: 655308619}
   - component: {fileID: 655308618}
   - component: {fileID: 655308617}
-  - component: {fileID: 655308616}
   m_Layer: 0
   m_Name: Points (13)
   m_TagString: Untagged
@@ -11354,19 +11075,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &655308616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655308615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &655308617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11882,10 +11590,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 720049300}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 720049299}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &720049298
 GameObject:
@@ -11900,7 +11604,6 @@ GameObject:
   - component: {fileID: 720049302}
   - component: {fileID: 720049301}
   - component: {fileID: 720049300}
-  - component: {fileID: 720049299}
   m_Layer: 0
   m_Name: Points (6)
   m_TagString: Untagged
@@ -11908,19 +11611,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &720049299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720049298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &720049300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14453,8 +14143,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415907288}
-        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+      - m_Target: {fileID: 195136888}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -14722,8 +14412,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415907288}
-        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+      - m_Target: {fileID: 195136888}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
@@ -15833,10 +15523,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 139837872}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 139837876}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1001 &1015045690
 PrefabInstance:
@@ -17813,10 +17499,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1197845026}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1197845025}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1197845024
 GameObject:
@@ -17831,7 +17513,6 @@ GameObject:
   - component: {fileID: 1197845028}
   - component: {fileID: 1197845027}
   - component: {fileID: 1197845026}
-  - component: {fileID: 1197845025}
   m_Layer: 0
   m_Name: Points (18)
   m_TagString: Untagged
@@ -17839,19 +17520,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1197845025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197845024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1197845026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19330,8 +18998,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415907288}
-        m_TargetAssemblyTypeName: ScenesController, Assembly-CSharp
+      - m_Target: {fileID: 195136888}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -20029,10 +19697,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1397707559}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1397707558}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1397707557
 GameObject:
@@ -20047,7 +19711,6 @@ GameObject:
   - component: {fileID: 1397707561}
   - component: {fileID: 1397707560}
   - component: {fileID: 1397707559}
-  - component: {fileID: 1397707558}
   m_Layer: 0
   m_Name: Points (4)
   m_TagString: Untagged
@@ -20055,19 +19718,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1397707558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397707557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1397707559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20385,10 +20035,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1413998423}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1413998422}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1413998421
 GameObject:
@@ -20403,7 +20049,6 @@ GameObject:
   - component: {fileID: 1413998425}
   - component: {fileID: 1413998424}
   - component: {fileID: 1413998423}
-  - component: {fileID: 1413998422}
   m_Layer: 0
   m_Name: Points (2)
   m_TagString: Untagged
@@ -20411,19 +20056,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1413998422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413998421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1413998423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20607,10 +20239,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1431389712}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1431389711}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1431389710
 GameObject:
@@ -20625,7 +20253,6 @@ GameObject:
   - component: {fileID: 1431389714}
   - component: {fileID: 1431389713}
   - component: {fileID: 1431389712}
-  - component: {fileID: 1431389711}
   m_Layer: 0
   m_Name: Points (17)
   m_TagString: Untagged
@@ -20633,19 +20260,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1431389711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431389710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1431389712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20928,10 +20542,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1438111862}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1438111861}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1438111860
 GameObject:
@@ -20946,7 +20556,6 @@ GameObject:
   - component: {fileID: 1438111864}
   - component: {fileID: 1438111863}
   - component: {fileID: 1438111862}
-  - component: {fileID: 1438111861}
   m_Layer: 0
   m_Name: Points (23)
   m_TagString: Untagged
@@ -20954,19 +20563,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1438111861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438111860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1438111862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21604,10 +21200,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1497979936}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1497979935}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1497979934
 GameObject:
@@ -21622,7 +21214,6 @@ GameObject:
   - component: {fileID: 1497979938}
   - component: {fileID: 1497979937}
   - component: {fileID: 1497979936}
-  - component: {fileID: 1497979935}
   m_Layer: 0
   m_Name: Points (28)
   m_TagString: Untagged
@@ -21630,19 +21221,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1497979935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497979934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1497979936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23312,10 +22890,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679751326}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1679751325}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1679751324
 GameObject:
@@ -23330,7 +22904,6 @@ GameObject:
   - component: {fileID: 1679751328}
   - component: {fileID: 1679751327}
   - component: {fileID: 1679751326}
-  - component: {fileID: 1679751325}
   m_Layer: 0
   m_Name: Points (3)
   m_TagString: Untagged
@@ -23338,19 +22911,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1679751325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679751324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1679751326
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25375,10 +24935,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1800976253}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1800976252}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1800976251
 GameObject:
@@ -25393,7 +24949,6 @@ GameObject:
   - component: {fileID: 1800976255}
   - component: {fileID: 1800976254}
   - component: {fileID: 1800976253}
-  - component: {fileID: 1800976252}
   m_Layer: 0
   m_Name: Points (20)
   m_TagString: Untagged
@@ -25401,19 +24956,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1800976252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800976251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1800976253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26123,10 +25665,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1850983962}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1850983961}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1850983960
 GameObject:
@@ -26141,7 +25679,6 @@ GameObject:
   - component: {fileID: 1850983964}
   - component: {fileID: 1850983963}
   - component: {fileID: 1850983962}
-  - component: {fileID: 1850983961}
   m_Layer: 0
   m_Name: Points (5)
   m_TagString: Untagged
@@ -26149,19 +25686,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1850983961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850983960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1850983962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26874,10 +26398,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1883860343}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1883860342}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1883860341
 GameObject:
@@ -26892,7 +26412,6 @@ GameObject:
   - component: {fileID: 1883860345}
   - component: {fileID: 1883860344}
   - component: {fileID: 1883860343}
-  - component: {fileID: 1883860342}
   m_Layer: 0
   m_Name: Points (22)
   m_TagString: Untagged
@@ -26900,19 +26419,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1883860342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883860341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1883860343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27096,10 +26602,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1884123679}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884123678}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1884123677
 GameObject:
@@ -27114,7 +26616,6 @@ GameObject:
   - component: {fileID: 1884123681}
   - component: {fileID: 1884123680}
   - component: {fileID: 1884123679}
-  - component: {fileID: 1884123678}
   m_Layer: 0
   m_Name: Points (34)
   m_TagString: Untagged
@@ -27122,19 +26623,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1884123678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884123677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1884123679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27875,10 +27363,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1920163181}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1920163180}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1920163179
 GameObject:
@@ -27893,7 +27377,6 @@ GameObject:
   - component: {fileID: 1920163183}
   - component: {fileID: 1920163182}
   - component: {fileID: 1920163181}
-  - component: {fileID: 1920163180}
   m_Layer: 0
   m_Name: Points (31)
   m_TagString: Untagged
@@ -27901,19 +27384,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1920163180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920163179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1920163181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28858,10 +28328,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1970570156}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1970570155}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1970570154
 GameObject:
@@ -28876,7 +28342,6 @@ GameObject:
   - component: {fileID: 1970570158}
   - component: {fileID: 1970570157}
   - component: {fileID: 1970570156}
-  - component: {fileID: 1970570155}
   m_Layer: 0
   m_Name: Points (9)
   m_TagString: Untagged
@@ -28884,19 +28349,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1970570155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970570154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1970570156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29080,10 +28532,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1974239738}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1974239737}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1974239736
 GameObject:
@@ -29098,7 +28546,6 @@ GameObject:
   - component: {fileID: 1974239740}
   - component: {fileID: 1974239739}
   - component: {fileID: 1974239738}
-  - component: {fileID: 1974239737}
   m_Layer: 0
   m_Name: Points (29)
   m_TagString: Untagged
@@ -29106,19 +28553,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1974239737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974239736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1974239738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29411,10 +28845,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1982235901}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1982235900}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &1982235899
 GameObject:
@@ -29429,7 +28859,6 @@ GameObject:
   - component: {fileID: 1982235903}
   - component: {fileID: 1982235902}
   - component: {fileID: 1982235901}
-  - component: {fileID: 1982235900}
   m_Layer: 0
   m_Name: Points (8)
   m_TagString: Untagged
@@ -29437,19 +28866,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1982235900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982235899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &1982235901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29881,10 +29297,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2016503654}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2016503653}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2016503652
 GameObject:
@@ -29899,7 +29311,6 @@ GameObject:
   - component: {fileID: 2016503656}
   - component: {fileID: 2016503655}
   - component: {fileID: 2016503654}
-  - component: {fileID: 2016503653}
   m_Layer: 0
   m_Name: Points (14)
   m_TagString: Untagged
@@ -29907,19 +29318,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2016503653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016503652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2016503654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30452,10 +29850,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2032822125}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2032822124}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2032822123
 GameObject:
@@ -30470,7 +29864,6 @@ GameObject:
   - component: {fileID: 2032822127}
   - component: {fileID: 2032822126}
   - component: {fileID: 2032822125}
-  - component: {fileID: 2032822124}
   m_Layer: 0
   m_Name: Points (25)
   m_TagString: Untagged
@@ -30478,19 +29871,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2032822124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032822123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2032822125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31224,10 +30604,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2076669382}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2076669381}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2076669380
 GameObject:
@@ -31242,7 +30618,6 @@ GameObject:
   - component: {fileID: 2076669384}
   - component: {fileID: 2076669383}
   - component: {fileID: 2076669382}
-  - component: {fileID: 2076669381}
   m_Layer: 0
   m_Name: Points (36)
   m_TagString: Untagged
@@ -31250,19 +30625,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2076669381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076669380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2076669382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31866,10 +31228,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2092830020}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2092830019}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2092830018
 GameObject:
@@ -31884,7 +31242,6 @@ GameObject:
   - component: {fileID: 2092830022}
   - component: {fileID: 2092830021}
   - component: {fileID: 2092830020}
-  - component: {fileID: 2092830019}
   m_Layer: 0
   m_Name: Points (15)
   m_TagString: Untagged
@@ -31892,19 +31249,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2092830019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092830018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2092830020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32088,10 +31432,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2114546971}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2114546970}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2114546969
 GameObject:
@@ -32106,7 +31446,6 @@ GameObject:
   - component: {fileID: 2114546973}
   - component: {fileID: 2114546972}
   - component: {fileID: 2114546971}
-  - component: {fileID: 2114546970}
   m_Layer: 0
   m_Name: Points (16)
   m_TagString: Untagged
@@ -32114,19 +31453,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2114546970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114546969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2114546971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32310,10 +31636,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2116602588}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6465ad4085922b4499298a8836f30812,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2116602587}
   m_SourcePrefab: {fileID: 100100000, guid: 6465ad4085922b4499298a8836f30812, type: 3}
 --- !u!1 &2116602586
 GameObject:
@@ -32328,7 +31650,6 @@ GameObject:
   - component: {fileID: 2116602590}
   - component: {fileID: 2116602589}
   - component: {fileID: 2116602588}
-  - component: {fileID: 2116602587}
   m_Layer: 0
   m_Name: Points (24)
   m_TagString: Untagged
@@ -32336,19 +31657,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2116602587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116602586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e227151a5c02047805e9a2c3acbb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishLine: {fileID: 54048867}
 --- !u!65 &2116602588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32762,7 +32070,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 415907287}
-  - {fileID: 195136889}
   - {fileID: 409671281}
   - {fileID: 832575519}
   - {fileID: 538231589}

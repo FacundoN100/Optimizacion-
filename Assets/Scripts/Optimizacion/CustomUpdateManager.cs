@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.LowLevel;
 
-// Registers scene-owned callbacks without adding another MonoBehaviour.
 public sealed class CustomUpdateManager : IDisposable
 {
     private sealed class FramePhase { }

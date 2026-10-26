@@ -1,19 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
-public class SliderController : MonoBehaviour
+[Serializable]
+public sealed class SliderController : IDisposable
 {
-    private Slider slider;
+    [SerializeField] private Slider slider;
     private SettingsManager settingsManager;
 
-    void Start()
+    public void Initialize(SettingsManager settings)
     {
-        slider = GetComponent<Slider>();
-        settingsManager = SettingsManager.Instance;
-        slider.onValueChanged.AddListener(value => settingsManager.SetMasterVolume(value));
-        slider.value = settingsManager.GetMasterVolume();
+        Dispose();
+        if (slider == null || settings == null) return;
+        settingsManager = settings;
+        slider.SetValueWithoutNotify(settingsManager.GetMasterVolume());
+        slider.onValueChanged.AddListener(SetVolume);
+    }
+
+    private void SetVolume(float volume)
+    {
+        if (settingsManager != null) settingsManager.SetMasterVolume(volume);
+    }
+
+    public void Dispose()
+    {
+        if (slider != null) slider.onValueChanged.RemoveListener(SetVolume);
+        settingsManager = null;
     }
 }

@@ -1,35 +1,41 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class FinishLine : MonoBehaviour
+[Serializable]
+public sealed class FinishLine
 {
     [SerializeField] private Canvas VictoryImage;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI finalPointsText;
-    [SerializeField] private GameManager gameManager;
-    private float timeSpend;
-    private int score = 0;
-    private int points = 0;
+    [SerializeField] private Collider trigger;
 
-    private void OnTriggerEnter(Collider other)
+    private Action stopClock;
+    private int points;
+
+    public Collider Trigger => trigger;
+
+    public void Initialize(Action onFinished)
     {
-        if (other.CompareTag("Player"))
-        {
-            timeSpend = Time.timeSinceLevelLoad;
-            timeText.SetText($"{timeSpend:F2}s");
-            finalPointsText.SetText("{0}", points);
-            score = (Mathf.Max(0, (int)(100 - timeSpend)) + 1) * ((int)(points * 10) + 1);
-            scoreText.SetText("{0}", score);
-            gameManager.StopClock();
-            VictoryImage.enabled = true;
-        }
+        stopClock = onFinished;
+        points = 0;
+    }
+
+    public void Complete(float timeSpent)
+    {
+        if (timeText != null) timeText.SetText($"{timeSpent:F2}s");
+        if (finalPointsText != null) finalPointsText.SetText("{0}", points);
+        int score = (Mathf.Max(0, (int)(100 - timeSpent)) + 1) * (points * 10 + 1);
+        if (scoreText != null) scoreText.SetText("{0}", score);
+        stopClock?.Invoke();
+        if (VictoryImage != null) VictoryImage.enabled = true;
     }
 
     public void IncreasePoints()
     {
         points += 100;
-        pointsText.text = "Points: " + points;
+        if (pointsText != null) pointsText.SetText("Points: {0}", points);
     }
 }

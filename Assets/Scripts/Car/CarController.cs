@@ -42,7 +42,6 @@ public sealed class CarController
             return;
         }
 
-        // Resolve after PlayerInput has enabled its private action map.
         if (moveAction == null) moveAction = playerInput.actions.FindAction("Move", true);
         Vector2 input = moveAction.ReadValue<Vector2>();
         Transform carTransform = body.transform;
@@ -50,7 +49,6 @@ public sealed class CarController
         moveForce += carTransform.forward * MoveSpeed * input.y * deltaTime;
         moveForce *= Drag;
         moveForce = Vector3.ClampMagnitude(moveForce, MaxSpeed);
-        // Traction remains disabled, as in the existing controller.
         body.AddForce(moveForce - body.velocity, ForceMode.VelocityChange);
         float signedSpeed = Vector3.Dot(moveForce, carTransform.forward);
         float yaw = input.x * signedSpeed * steerAngle * deltaTime;

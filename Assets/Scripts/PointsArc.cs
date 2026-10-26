@@ -1,14 +1,21 @@
+using System;
 using UnityEngine;
 
-public class PointsArc : MonoBehaviour
+[Serializable]
+public sealed class PointsArc
 {
-    [SerializeField] private FinishLine finishLine;
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] private Collider trigger;
+    private FinishLine finishLine;
+
+    public Collider Trigger => trigger;
+
+    public void Initialize(FinishLine target) => finishLine = target;
+
+    public void Collect()
     {
-        if (other != null && other.CompareTag("Player"))
-        {
-            finishLine.IncreasePoints();
-            this.gameObject.SetActive(false);
-        }
+        if (trigger == null || !trigger.enabled || !trigger.gameObject.activeInHierarchy
+            || finishLine == null) return;
+        finishLine.IncreasePoints();
+        trigger.gameObject.SetActive(false);
     }
 }

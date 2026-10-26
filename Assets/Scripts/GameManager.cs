@@ -13,9 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScriptMenu menu;
     [SerializeField] private SkinSelectorUI skinSelector;
     [SerializeField] private GameObject[] modelObjects;
+    [SerializeField] private FinishLine finishLine;
+    [SerializeField] private PointsArc[] collectibleArcs;
+    [SerializeField] private SliderController volumeSlider;
 
     private CustomUpdateManager updateManager;
     private ApplyModel model;
+    private readonly ScenesController scenes = new ScenesController();
+    private Dictionary<Collider, PointsArc> arcsByTrigger;
 
     private void Awake()
     {
@@ -29,11 +34,39 @@ public class GameManager : MonoBehaviour
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
         if (menu != null && menu.IsConfigured) menu.Initialize();
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
+        ConfigureCollectibles();
         ConfigurePointArcs();
         ConfigureModels();
         if ((carController != null && carController.IsConfigured)
             || (clock != null && clock.IsConfigured))
             updateManager = new CustomUpdateManager(TickFrame, TickPhysics);
+    }
+
+    private void Start()
+    {
+        volumeSlider?.Initialize(SettingsManager.Instance);
+    }
+
+    private void ConfigureCollectibles()
+    {
+        finishLine?.Initialize(StopClock);
+        if (collectibleArcs == null || collectibleArcs.Length == 0) return;
+        arcsByTrigger = new Dictionary<Collider, PointsArc>(collectibleArcs.Length);
+        foreach (PointsArc arc in collectibleArcs)
+        {
+            if (arc == null || arc.Trigger == null) continue;
+            arc.Initialize(finishLine);
+            arcsByTrigger.Add(arc.Trigger, arc);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == null || !CompareTag("Player")) return;
+        if (arcsByTrigger != null && arcsByTrigger.TryGetValue(other, out PointsArc arc))
+            arc.Collect();
+        else if (finishLine != null && other == finishLine.Trigger)
+            finishLine.Complete(Time.timeSinceLevelLoad);
     }
 
     private void ConfigurePointArcs()
@@ -79,6 +112,7 @@ public class GameManager : MonoBehaviour
         updateManager?.Dispose();
         StopAllCoroutines();
         model?.Dispose();
+        volumeSlider?.Dispose();
         if (Instance == this) Instance = null;
     }
 
@@ -92,7 +126,6 @@ public class GameManager : MonoBehaviour
         if (model != null) StartCoroutine(model.UpdateCatalog());
     }
 
-    // UnityEvents target this scene component; the behavior lives in plain classes.
     public void Play() => menu?.Play();
     public void BackSkins() => menu?.BackSkins();
     public void StartGame() => menu?.StartGame();
@@ -111,4 +144,6 @@ public class GameManager : MonoBehaviour
     public void ExitNot() => menu?.ExitNot();
     public void NextSkin() => skinSelector?.NextSkin();
     public void PreviousSkin() => skinSelector?.PreviousSkin();
+    public void BackToMenu() => scenes.BackToMenu();
+    public void Retry() => scenes.Retry();
 }
