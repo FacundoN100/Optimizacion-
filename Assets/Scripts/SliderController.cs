@@ -6,25 +6,27 @@ using UnityEngine.UI;
 public sealed class SliderController : IDisposable
 {
     [SerializeField] private Slider slider;
-    private SettingsManager settingsManager;
+    private IAudioSettings audioSettings;
 
-    public void Initialize(SettingsManager settings)
+    public bool IsConfigured => slider != null;
+
+    public void Initialize(IAudioSettings settings)
     {
         Dispose();
         if (slider == null || settings == null) return;
-        settingsManager = settings;
-        slider.SetValueWithoutNotify(settingsManager.GetMasterVolume());
+        audioSettings = settings;
+        slider.SetValueWithoutNotify(audioSettings.GetMasterVolume());
         slider.onValueChanged.AddListener(SetVolume);
     }
 
     private void SetVolume(float volume)
     {
-        if (settingsManager != null) settingsManager.SetMasterVolume(volume);
+        if (audioSettings != null) audioSettings.SetMasterVolume(volume);
     }
 
     public void Dispose()
     {
         if (slider != null) slider.onValueChanged.RemoveListener(SetVolume);
-        settingsManager = null;
+        audioSettings = null;
     }
 }

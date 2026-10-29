@@ -8,16 +8,22 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private Image image;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private GameManager gameManager;
+
+    // Ya no es una referencia directa al GameManager: es una interfaz
+    // que se le pide al Service Locator.
+    private IGameplayControl gameplay;
     private int currentIndex = 0;
 
-    void Start()
+    // Antes era Start(); la consigna solo permite Awake().
+    private void Awake()
     {
+        gameplay = ServiceLocator.Get<IGameplayControl>();
+
         if (sprites.Length > 0 && image != null)
         {
             image.sprite = sprites[currentIndex];
         }
-        gameManager.SetCarMovement(false);
+        gameplay.SetCarMovement(false);
     }
 
     public void NextImage()
@@ -29,8 +35,8 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            gameManager.StartClock();
-            gameManager.SetCarMovement(true);
+            gameplay.StartClock();
+            gameplay.SetCarMovement(true);
             canvas.enabled = false;
         }
     }

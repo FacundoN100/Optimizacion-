@@ -2507,6 +2507,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsArcs: []
   arcsToActivate: 0
+  carController:
+    MoveSpeed: 50
+    MaxSpeed: 15
+    Drag: 0.98
+    DriftSteerAngle: 20
+    Traction: 1
+    Downforce: 5
+    body: {fileID: 0}
+    playerInput: {fileID: 0}
+  clock:
+    maxTime: 100
+    timeFillImage: {fileID: 0}
+    deathImage: {fileID: 0}
+    fpsText: {fileID: 0}
+    owner: {fileID: 0}
   menu:
     MenuPanel: {fileID: 1645417117}
     OptionsPanel: {fileID: 736170242}
@@ -2531,6 +2546,14 @@ MonoBehaviour:
     skinPreview: {fileID: 163458778}
     skinNameText: {fileID: 550190894}
   modelObjects: []
+  finishLine:
+    VictoryImage: {fileID: 0}
+    timeText: {fileID: 0}
+    scoreText: {fileID: 0}
+    pointsText: {fileID: 0}
+    finalPointsText: {fileID: 0}
+    trigger: {fileID: 0}
+  collectibleArcs: []
   volumeSlider:
     slider: {fileID: 1718193550}
 --- !u!4 &533757595
@@ -4688,8 +4711,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1491126285}
-  - component: {fileID: 1491126284}
   - component: {fileID: 1491126286}
+  - component: {fileID: 1491126287}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -4697,18 +4720,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1491126284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491126283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d879b155878774441a4a74ee0651a18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1491126285
 Transform:
   m_ObjectHideFlags: 0
@@ -4821,6 +4832,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1491126287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491126283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e970cb3ed291ca4439f6bafb5fbbd518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638322835
 GameObject:
   m_ObjectHideFlags: 0

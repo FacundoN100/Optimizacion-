@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-100)]
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IGameplayControl
 {
-    public static GameManager Instance { get; private set; }
     [SerializeField] private List<GameObject> pointsArcs = new List<GameObject>();
     [SerializeField] private int arcsToActivate;
     [SerializeField] private CarController carController;
@@ -24,27 +23,23 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
         if (carController != null && carController.IsConfigured) carController.Initialize();
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
         if (menu != null && menu.IsConfigured) menu.Initialize();
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
+        // El servicio de audio se pide al Service Locator: lo registró el Bootstrap.
+        if (volumeSlider != null && volumeSlider.IsConfigured)
+            volumeSlider.Initialize(ServiceLocator.Get<IAudioSettings>());
         ConfigureCollectibles();
         ConfigurePointArcs();
         ConfigureModels();
         if ((carController != null && carController.IsConfigured)
             || (clock != null && clock.IsConfigured))
             updateManager = new CustomUpdateManager(TickFrame, TickPhysics);
-    }
 
-    private void Start()
-    {
-        volumeSlider?.Initialize(SettingsManager.Instance);
+        // Servicio de esta escena: se registra al arrancar la escena
+        // y se desregistra cuando la escena se destruye (ver OnDestroy).
+        ServiceLocator.Register<IGameplayControl>(this);
     }
 
     private void ConfigureCollectibles()
@@ -109,11 +104,11 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        ServiceLocator.Unregister<IGameplayControl>(this);
         updateManager?.Dispose();
         StopAllCoroutines();
         model?.Dispose();
         volumeSlider?.Dispose();
-        if (Instance == this) Instance = null;
     }
 
     public void SetCarMovement(bool enabled) => carController?.SetMovementEnabled(enabled);
