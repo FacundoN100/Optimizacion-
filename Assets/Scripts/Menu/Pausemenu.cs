@@ -28,8 +28,8 @@ public class PauseMenu : IDisposable
 
         // Se le dice a cada botón qué método ejecutar al tocarlo, por código.
         resumeButton.onClick.AddListener(Resume);
-        retryButton.onClick.AddListener(scenes.Retry);
-        menuButton.onClick.AddListener(scenes.BackToMenu);
+        retryButton.onClick.AddListener(Retry);
+        menuButton.onClick.AddListener(BackToMenu);
     }
 
     public void TogglePause()
@@ -52,11 +52,25 @@ public class PauseMenu : IDisposable
         // PENDIENTE: reanudar la lógica del juego cuando esté el Custom Update Manager.
     }
 
+    // Antes de cambiar de escena se reanuda el juego, para que la próxima
+    // partida (o el menú) no arranque pausada.
+    private void Retry()
+    {
+        Resume();
+        scenes.Retry();
+    }
+
+    private void BackToMenu()
+    {
+        Resume();
+        scenes.BackToMenu();
+    }
+
     // Lo que se suscribe, se desuscribe (Unidad 03: evitar memory leaks).
     public void Dispose()
     {
         if (resumeButton != null) resumeButton.onClick.RemoveListener(Resume);
-        if (retryButton != null) retryButton.onClick.RemoveListener(scenes.Retry);
-        if (menuButton != null) menuButton.onClick.RemoveListener(scenes.BackToMenu);
+        if (retryButton != null) retryButton.onClick.RemoveListener(Retry);
+        if (menuButton != null) menuButton.onClick.RemoveListener(BackToMenu);
     }
 }
