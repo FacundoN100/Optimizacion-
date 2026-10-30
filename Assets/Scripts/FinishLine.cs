@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public sealed class FinishLine
+public sealed class FinishLine : IPointsCounter
 {
     [SerializeField] private Canvas VictoryImage;
     [SerializeField] private TextMeshProUGUI timeText;

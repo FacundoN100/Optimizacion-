@@ -5,17 +5,18 @@ using UnityEngine;
 public sealed class PointsArc
 {
     [SerializeField] private Collider trigger;
-    private FinishLine finishLine;
+    // Antes era la clase concreta FinishLine; ahora es la interfaz.
+    private IPointsCounter pointsCounter;
 
     public Collider Trigger => trigger;
 
-    public void Initialize(FinishLine target) => finishLine = target;
+    public void Initialize(IPointsCounter target) => pointsCounter = target;
 
     public void Collect()
     {
         if (trigger == null || !trigger.enabled || !trigger.gameObject.activeInHierarchy
-            || finishLine == null) return;
-        finishLine.IncreasePoints();
+            || pointsCounter == null) return;
+        pointsCounter.IncreasePoints();
         trigger.gameObject.SetActive(false);
     }
 }
