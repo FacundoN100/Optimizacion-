@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
         if (menu != null && menu.IsConfigured) menu.Initialize();
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
-        // El servicio de audio se pide al Service Locator: lo registró el Bootstrap.
+       
         if (volumeSlider != null && volumeSlider.IsConfigured)
             volumeSlider.Initialize(ServiceLocator.Get<IAudioSettings>());
         ConfigureCollectibles();
@@ -37,8 +37,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
             || (clock != null && clock.IsConfigured))
             updateManager = new CustomUpdateManager(TickFrame, TickPhysics);
 
-        // Servicio de esta escena: se registra al arrancar la escena
-        // y se desregistra cuando la escena se destruye (ver OnDestroy).
+        
         ServiceLocator.Register<IGameplayControl>(this);
     }
 

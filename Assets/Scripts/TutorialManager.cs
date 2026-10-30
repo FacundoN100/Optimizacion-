@@ -11,12 +11,11 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private PauseMenu pauseMenu;
 
-    // Ya no es una referencia directa al GameManager: es una interfaz
-    // que se le pide al Service Locator.
+    
     private IGameplayControl gameplay;
     private int currentIndex = 0;
 
-    // Antes era Start(); la consigna solo permite Awake().
+    
     private void Awake()
     {
         gameplay = ServiceLocator.Get<IGameplayControl>();
@@ -30,14 +29,13 @@ public class TutorialManager : MonoBehaviour
         if (pauseMenu != null && pauseMenu.IsConfigured) pauseMenu.Initialize();
     }
 
-    // La llama la acción "Pause" del PlayerInput (tecla Escape), igual que el freno.
+    
     public void TogglePause(InputAction.CallbackContext context)
     {
-        // El PlayerInput avisa varias veces por cada toque (started, performed, canceled).
-        // Solo se reacciona a "performed": si no, pausaría y despausaría en el mismo toque.
+       
         if (!context.performed) return;
 
-        // Mientras se ve el tutorial no se puede pausar.
+        
         if (canvas.enabled) return;
 
         if (pauseMenu != null && pauseMenu.IsConfigured) pauseMenu.TogglePause();

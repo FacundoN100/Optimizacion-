@@ -2,9 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Menú de pausa. Es una clase común de C#, NO un MonoBehaviour:
-// vive adentro del TutorialManager, así que no suma a la cuenta de MonoBehaviours.
-// [Serializable] hace que sus campos aparezcan en el Inspector del TutorialManager.
+
 [Serializable]
 public class PauseMenu : IDisposable
 {
