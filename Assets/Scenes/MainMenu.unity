@@ -2530,6 +2530,8 @@ MonoBehaviour:
     CreditsPanel: {fileID: 1658371468}
     ExitPanel: {fileID: 1173903399}
     SkinPanel: {fileID: 142310010}
+    volumeSlider:
+      slider: {fileID: 1718193550}
   skinSelector:
     skins:
     - {fileID: 21300000, guid: 4d4eb4d232a818147964ec0bd6660bc0, type: 3}
@@ -2554,8 +2556,31 @@ MonoBehaviour:
     finalPointsText: {fileID: 0}
     trigger: {fileID: 0}
   collectibleArcs: []
-  volumeSlider:
-    slider: {fileID: 1718193550}
+  combat:
+    playerHealth:
+      maxHealth: 100
+      healthFillImage: {fileID: 0}
+      deathCanvas: {fileID: 0}
+    enemies:
+      enemyPrefab: {fileID: 0}
+      spawnPoints: []
+      settings:
+        speed: 18
+        rotationSpeed: 3
+        slowRadius: 5
+        maxPredictionTime: 0.5
+        wanderAngle: 45
+        wanderInterval: 1.5
+        damage: 10
+        attackCooldown: 0.5
+        decisionInterval: 0.2
+        lineOfSight:
+          distance: 50
+          angle: 90
+          attackDistance: 5
+          obstacles:
+            serializedVersion: 2
+            m_Bits: 0
 --- !u!4 &533757595
 Transform:
   m_ObjectHideFlags: 0

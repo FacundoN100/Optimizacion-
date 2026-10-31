@@ -20,6 +20,7 @@ public sealed class CarController
     private bool canMove;
 
     public bool IsConfigured => body != null && playerInput != null;
+    public Rigidbody Body => body;
 
     public void Initialize()
     {

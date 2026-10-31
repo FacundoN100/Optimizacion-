@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4310572905384317291
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -7511558181221131132, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0ca09d17e446b695c8d1c782d24bb6, type: 2}
+    - target: {fileID: 919132149155446097, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      propertyPath: m_Name
+      value: PoliceCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6820419755043188157}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1593860472216503728}
+  m_SourcePrefab: {fileID: 100100000, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54, type: 3}
+--- !u!1 &3968606861482404922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 22b85dc5f31cb3a44ab5ef4bba01cf54,
+    type: 3}
+  m_PrefabInstance: {fileID: 4310572905384317291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &6820419755043188157
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3968606861482404922}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!65 &1593860472216503728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3968606861482404922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013966975, y: 0.011801313, z: 0.034383}
+  m_Center: {x: -0.00039726737, y: 0.005900648, z: 0.0016013536}

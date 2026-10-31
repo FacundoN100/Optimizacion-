@@ -12,10 +12,13 @@ public sealed class ScriptMenu
     [SerializeField] private GameObject CreditsPanel;
     [SerializeField] private GameObject ExitPanel;
     [SerializeField] private GameObject SkinPanel;
+    [SerializeField] private SliderController volumeSlider;
     public bool IsConfigured => MenuPanel != null;
 
-    public void Initialize()
+    public void Initialize(IAudioSettings audioSettings)
     {
+        if (volumeSlider != null && volumeSlider.IsConfigured) volumeSlider.Initialize(audioSettings);
+
         int anchoObjetivo = 1334;
         int altoObjetivo = 720;
 
@@ -109,6 +112,8 @@ public sealed class ScriptMenu
     {
         Application.Quit();
     }
+
+    public void Dispose() => volumeSlider?.Dispose();
 
     public void ExitNot()
     {

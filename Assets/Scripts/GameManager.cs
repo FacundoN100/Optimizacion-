@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
     [SerializeField] private GameObject[] modelObjects;
     [SerializeField] private FinishLine finishLine;
     [SerializeField] private PointsArc[] collectibleArcs;
-    [SerializeField] private SliderController volumeSlider;
+    [SerializeField] private CombatSystem combat;
 
     private CustomUpdateManager updateManager;
     private ApplyModel model;
@@ -25,26 +25,24 @@ public class GameManager : MonoBehaviour, IGameplayControl
     {
         if (carController != null && carController.IsConfigured) carController.Initialize();
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
-        if (menu != null && menu.IsConfigured) menu.Initialize();
+        if (menu != null && menu.IsConfigured) menu.Initialize(ServiceLocator.Get<IAudioSettings>());
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
-        // El servicio de audio se pide al Service Locator: lo registró el Bootstrap.
-        if (volumeSlider != null && volumeSlider.IsConfigured)
-            volumeSlider.Initialize(ServiceLocator.Get<IAudioSettings>());
         ConfigureCollectibles();
         ConfigurePointArcs();
         ConfigureModels();
+        if (combat != null && combat.IsConfigured && carController != null && carController.IsConfigured)
+            combat.Initialize(carController.Body, OnPlayerDied);
         if ((carController != null && carController.IsConfigured)
             || (clock != null && clock.IsConfigured))
             updateManager = new CustomUpdateManager(TickFrame, TickPhysics);
 
-        // Servicio de esta escena: se registra al arrancar la escena
-        // y se desregistra cuando la escena se destruye (ver OnDestroy).
+        
         ServiceLocator.Register<IGameplayControl>(this);
     }
 
     private void ConfigureCollectibles()
     {
-        finishLine?.Initialize(StopClock);
+        finishLine?.Initialize(OnRaceFinished);
         if (collectibleArcs == null || collectibleArcs.Length == 0) return;
         arcsByTrigger = new Dictionary<Collider, PointsArc>(collectibleArcs.Length);
         foreach (PointsArc arc in collectibleArcs)
@@ -97,10 +95,34 @@ public class GameManager : MonoBehaviour, IGameplayControl
 
     private void TickPhysics(float deltaTime)
     {
-        if (this != null && isActiveAndEnabled) carController?.TickPhysics(deltaTime);
+        if (this == null || !isActiveAndEnabled) return;
+        carController?.TickPhysics(deltaTime);
+        combat?.TickPhysics(deltaTime);
     }
 
-    private void OnTimeExpired() => SetCarMovement(false);
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision == null) return;
+        combat?.HandlePlayerCollision(collision.collider);
+    }
+
+    private void OnTimeExpired()
+    {
+        SetCarMovement(false);
+        combat?.Stop();
+    }
+
+    private void OnRaceFinished()
+    {
+        StopClock();
+        combat?.Stop();
+    }
+
+    private void OnPlayerDied()
+    {
+        SetCarMovement(false);
+        StopClock();
+    }
 
     private void OnDestroy()
     {
@@ -108,7 +130,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
         updateManager?.Dispose();
         StopAllCoroutines();
         model?.Dispose();
-        volumeSlider?.Dispose();
+        menu?.Dispose();
     }
 
     public void SetCarMovement(bool enabled) => carController?.SetMovementEnabled(enabled);
