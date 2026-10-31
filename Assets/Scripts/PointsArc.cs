@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class PointsArc
 {
     [SerializeField] private Collider trigger;
-    // Antes era la clase concreta FinishLine; ahora es la interfaz.
+    
     private IPointsCounter pointsCounter;
 
     public Collider Trigger => trigger;
