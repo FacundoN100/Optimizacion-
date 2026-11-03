@@ -13,6 +13,11 @@ public class EnemySettings
     [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private float decisionInterval = 0.2f;
     [SerializeField] private LineOfSight lineOfSight;
+    [SerializeField] private LightMaster.TimerLightVariables policeLightTiming = new LightMaster.TimerLightVariables
+    {
+        TimerOnLength = 0.09f,
+        TimerOffLength = 0.06f
+    };
 
     public float Speed => speed;
     public float RotationSpeed => rotationSpeed;
@@ -23,4 +28,5 @@ public class EnemySettings
     public float AttackCooldown => attackCooldown;
     public float DecisionInterval => decisionInterval;
     public LineOfSight LineOfSight => lineOfSight;
+    public LightMaster.TimerLightVariables PoliceLightTiming => policeLightTiming;
 }

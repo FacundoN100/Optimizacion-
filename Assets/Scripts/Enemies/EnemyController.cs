@@ -15,6 +15,7 @@ public class EnemyController
     private readonly EnemySettings settings;
     private readonly DecisionNode tree;
     private readonly EnemyContext context;
+    private readonly PoliceLights policeLights;
 
     private Mode mode;
     private int waypointIndex;
@@ -34,6 +35,7 @@ public class EnemyController
         this.patrolPoints = patrolPoints;
         this.settings = settings;
         this.tree = tree;
+        policeLights = new PoliceLights(instance.transform, settings.PoliceLightTiming);
 
         context = new EnemyContext { self = transform, player = playerBody.transform, los = settings.LineOfSight };
 
@@ -53,6 +55,7 @@ public class EnemyController
     public void TickPhysics(float deltaTime)
     {
         if (mode == Mode.Stopped) return;
+        policeLights.Tick(deltaTime);
 
         if (timeSinceLastAttack < settings.AttackCooldown)
         {
@@ -103,6 +106,7 @@ public class EnemyController
     public void Stop()
     {
         mode = Mode.Stopped;
+        policeLights.Stop();
         body.velocity = Vector3.zero;
     }
 

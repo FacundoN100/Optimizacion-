@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
 
     private void OnRaceFinished()
     {
+        carController?.SetDriftSmokeEnabled(false);
         StopClock();
         combat?.Stop();
     }
@@ -122,6 +123,11 @@ public class GameManager : MonoBehaviour, IGameplayControl
     {
         SetCarMovement(false);
         StopClock();
+    }
+
+    private void OnDisable()
+    {
+        carController?.StopDriftSmoke();
     }
 
     private void OnDestroy()
