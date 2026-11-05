@@ -2101,7 +2101,7 @@ MonoBehaviour:
       - {fileID: 1050457039}
       - {fileID: 896366223}
       settings:
-        speed: 40
+        speed: 45
         rotationSpeed: 6
         slowRadius: 5
         maxPredictionTime: 0.5
@@ -2116,6 +2116,7 @@ MonoBehaviour:
           obstacles:
             serializedVersion: 2
             m_Bits: 64
+          memoryDuration: 4
         policeLightTiming:
           TimerOnLength: 0.09
           TimerOffLength: 0.06
@@ -3372,13 +3373,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47084567, y: 0.006351429, z: -0.0033899227, w: 0.8821862}
-  m_LocalPosition: {x: 0, y: 0.44, z: -0.1828294}
+  m_LocalRotation: {x: 0.3473707, y: 0.006751111, z: -0.0025009464, w: 0.9377002}
+  m_LocalPosition: {x: -0.001, y: 0.158, z: -0.162}
   m_LocalScale: {x: 0.009999135, y: 0.010216071, z: 0.009807746}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 409671285}
-  m_LocalEulerAnglesHint: {x: 56.18, y: 0.825, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.654, y: 0.825, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0

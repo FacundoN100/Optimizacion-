@@ -8,6 +8,9 @@ public class LineOfSight
     [SerializeField] private float angle = 90f;
     [SerializeField] private float attackDistance = 5f;
     [SerializeField] private LayerMask obstacles;
+    [SerializeField] private float memoryDuration = 4f;
+
+    public float MemoryDuration => memoryDuration;
 
     private float distanceSqr;
     private float attackDistanceSqr;

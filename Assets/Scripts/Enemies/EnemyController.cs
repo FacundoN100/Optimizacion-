@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyController
 {
-    public enum Mode { Patrol, Pursue, Attack, AfterAttack, Stopped }
+    public enum Mode { Patrol, Pursue, Attack, AfterAttack, Search, Stopped }
 
     private const float RamSpeedMultiplier = 2f;
     private const float PatrolSpeedMultiplier = 0.5f;
@@ -22,6 +22,7 @@ public class EnemyController
     private int patrolStep;
     private float decisionTimer;
     private float timeSinceLastAttack;
+    private Vector3 lastSeenPosition;
 
     public Collider Collider { get; }
 
@@ -48,6 +49,11 @@ public class EnemyController
 
     public void SetMode(Mode newMode)
     {
+        if (newMode == Mode.Pursue || newMode == Mode.Attack)
+        {
+            lastSeenPosition = context.player.position;
+            context.searchTimeLeft = settings.LineOfSight.MemoryDuration;
+        }
         if (newMode == Mode.Patrol && mode != Mode.Patrol) ChooseNearestWaypoint();
         mode = newMode;
     }
@@ -70,6 +76,7 @@ public class EnemyController
             Mode previousMode = mode;
             tree.Evaluate(this, context);
             if (mode == Mode.Patrol && previousMode == Mode.Patrol && IsStuck()) ReversePatrol();
+            if (mode == Mode.Search && previousMode == Mode.Search && IsStuck()) context.searchTimeLeft = 0f;
             decisionTimer = settings.DecisionInterval;
         }
 
@@ -82,10 +89,15 @@ public class EnemyController
                 Vector3 pursueDirection = SteeringBehaviour.Pursue(transform, context.player, playerBody,
                     settings.MaxPredictionTime, settings.SlowRadius);
                 Move(pursueDirection, settings.Speed, deltaTime);
+                lastSeenPosition = context.player.position;
                 break;
             case Mode.Attack:
                 Vector3 attackDirection = SteeringBehaviour.Seek(transform, context.player.position);
                 Move(attackDirection, settings.Speed * RamSpeedMultiplier, deltaTime);
+                lastSeenPosition = context.player.position;
+                break;
+            case Mode.Search:
+                Search(deltaTime);
                 break;
             default:
                 Move(Vector3.zero, 0f, deltaTime);
@@ -123,6 +135,22 @@ public class EnemyController
         }
 
         Move(SteeringBehaviour.Seek(transform, target), settings.Speed * PatrolSpeedMultiplier, deltaTime);
+    }
+
+    private void Search(float deltaTime)
+    {
+        context.searchTimeLeft -= deltaTime;
+        Vector3 toTarget = lastSeenPosition - transform.position;
+        toTarget.y = 0f;
+        float reachDistance = settings.WaypointReachDistance;
+        if (toTarget.sqrMagnitude <= reachDistance * reachDistance)
+        {
+            context.searchTimeLeft = 0f;
+            Move(Vector3.zero, 0f, deltaTime);
+            return;
+        }
+
+        Move(SteeringBehaviour.Seek(transform, lastSeenPosition), settings.Speed, deltaTime);
     }
 
     private void NextWaypoint()
