@@ -22,6 +22,17 @@ public static class ServiceLocator
     // por eso el Bootstrap tiene que registrar todo antes que nadie lo pida.
     public static T Get<T>() => (T)_services[typeof(T)];
 
+    public static bool TryGet<T>(out T service)
+    {
+        if (_services.TryGetValue(typeof(T), out object value) && value is T found)
+        {
+            service = found;
+            return true;
+        }
+        service = default;
+        return false;
+    }
+
     // Borra el servicio registrado para T, pero SOLO si sigue siendo este mismo objeto.
     // Lo que se registra, se desregistra: misma idea que el Register/Unregister del
     // Custom Update Manager (Unidad 04) y que desuscribir eventos para evitar

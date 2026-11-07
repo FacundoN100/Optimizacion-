@@ -6,23 +6,29 @@ public sealed class CustomUpdateManager : IDisposable
 {
     private sealed class FramePhase { }
     private sealed class PhysicsPhase { }
+    private sealed class CameraPhase { }
 
     private readonly Action<float, float> frameTick;
     private readonly Action<float> physicsTick;
+    private readonly Action renderTick;
     private bool disposed;
 
-    public CustomUpdateManager(Action<float, float> onFrame, Action<float> onPhysics)
+    public CustomUpdateManager(Action<float, float> onFrame, Action<float> onPhysics, Action onRender = null)
     {
         frameTick = onFrame;
         physicsTick = onPhysics;
+        renderTick = onRender;
         PlayerLoopSystem loop = PlayerLoop.GetCurrentPlayerLoop();
-        bool frameAdded = InsertBefore(ref loop,
+        bool frameAdded = onFrame == null || InsertBefore(ref loop,
             typeof(UnityEngine.PlayerLoop.Update.ScriptRunBehaviourUpdate),
             new PlayerLoopSystem { type = typeof(FramePhase), updateDelegate = TickFrame });
-        bool physicsAdded = InsertBefore(ref loop,
+        bool physicsAdded = onPhysics == null || InsertBefore(ref loop,
             typeof(UnityEngine.PlayerLoop.FixedUpdate.ScriptRunBehaviourFixedUpdate),
             new PlayerLoopSystem { type = typeof(PhysicsPhase), updateDelegate = TickPhysics });
-        if (!frameAdded || !physicsAdded)
+        bool renderAdded = onRender == null || InsertBefore(ref loop,
+            typeof(UnityEngine.PlayerLoop.PreLateUpdate.ScriptRunBehaviourLateUpdate),
+            new PlayerLoopSystem { type = typeof(CameraPhase), updateDelegate = TickRender });
+        if (!frameAdded || !physicsAdded || !renderAdded)
             throw new InvalidOperationException("The Unity player loop is missing the required update phases.");
         PlayerLoop.SetPlayerLoop(loop);
     }
@@ -35,6 +41,11 @@ public sealed class CustomUpdateManager : IDisposable
     private void TickPhysics()
     {
         if (!disposed) physicsTick?.Invoke(Time.fixedDeltaTime);
+    }
+
+    private void TickRender()
+    {
+        if (!disposed) renderTick?.Invoke();
     }
 
     private static bool InsertBefore(ref PlayerLoopSystem parent, Type target, PlayerLoopSystem item)
@@ -64,6 +75,7 @@ public sealed class CustomUpdateManager : IDisposable
         PlayerLoopSystem loop = PlayerLoop.GetCurrentPlayerLoop();
         Remove(ref loop, TickFrame);
         Remove(ref loop, TickPhysics);
+        Remove(ref loop, TickRender);
         PlayerLoop.SetPlayerLoop(loop);
     }
 

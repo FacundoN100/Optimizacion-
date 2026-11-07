@@ -17,13 +17,25 @@ public class GameManager : MonoBehaviour, IGameplayControl
     [SerializeField] private CombatSystem combat;
 
     private CustomUpdateManager updateManager;
+    private CarCameraFollow cameraFollow;
+    private PlayerAudioListener audioListener;
+    private VehicleAudio carAudio;
+    private DrivingControlsFeedback controlsFeedback;
     private ApplyModel model;
     private readonly ScenesController scenes = new ScenesController();
     private Dictionary<Collider, PointsArc> arcsByTrigger;
 
     private void Awake()
     {
-        if (carController != null && carController.IsConfigured) carController.Initialize();
+        if (carController != null && carController.IsConfigured)
+        {
+            carController.Initialize();
+            controlsFeedback = new DrivingControlsFeedback(carController.Body.GetComponent<PlayerInput>());
+            cameraFollow = new CarCameraFollow(carController.Body, Camera.main);
+            audioListener = new PlayerAudioListener(carController.Body, Camera.main);
+            if (ServiceLocator.TryGet<IGameAudio>(out var audio))
+                carAudio = audio.CreateVehicleAudio(carController.Body, false, carController.SpeedLimit);
+        }
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
         if (menu != null && menu.IsConfigured) menu.Initialize(ServiceLocator.Get<IAudioSettings>());
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
@@ -34,7 +46,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
             combat.Initialize(carController.Body, OnPlayerDied);
         if ((carController != null && carController.IsConfigured)
             || (clock != null && clock.IsConfigured))
-            updateManager = new CustomUpdateManager(TickFrame, TickPhysics);
+            updateManager = new CustomUpdateManager(TickFrame, TickPhysics, TickRender);
 
         
         ServiceLocator.Register<IGameplayControl>(this);
@@ -90,14 +102,24 @@ public class GameManager : MonoBehaviour, IGameplayControl
 
     private void TickFrame(float deltaTime, float unscaledDeltaTime)
     {
-        if (this != null && isActiveAndEnabled) clock?.Tick(deltaTime, unscaledDeltaTime);
+        if (this == null || !isActiveAndEnabled) return;
+        clock?.Tick(deltaTime, unscaledDeltaTime);
+        controlsFeedback?.Tick(unscaledDeltaTime);
     }
 
     private void TickPhysics(float deltaTime)
     {
         if (this == null || !isActiveAndEnabled) return;
         carController?.TickPhysics(deltaTime);
+        cameraFollow?.CapturePhysicsRotation();
         combat?.TickPhysics(deltaTime);
+    }
+
+    private void TickRender()
+    {
+        if (this == null || !isActiveAndEnabled) return;
+        cameraFollow?.TickRender();
+        audioListener?.TickRender();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -115,6 +137,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
     private void OnRaceFinished()
     {
         carController?.SetDriftSmokeEnabled(false);
+        carAudio?.SetRunning(false);
         StopClock();
         combat?.Stop();
     }
@@ -128,18 +151,28 @@ public class GameManager : MonoBehaviour, IGameplayControl
     private void OnDisable()
     {
         carController?.StopDriftSmoke();
+        carAudio?.SetRunning(false);
     }
 
     private void OnDestroy()
     {
         ServiceLocator.Unregister<IGameplayControl>(this);
         updateManager?.Dispose();
+        audioListener?.Dispose();
+        cameraFollow?.Dispose();
+        carAudio?.Dispose();
+        controlsFeedback?.Dispose();
+        combat?.Dispose();
         StopAllCoroutines();
         model?.Dispose();
         menu?.Dispose();
     }
 
-    public void SetCarMovement(bool enabled) => carController?.SetMovementEnabled(enabled);
+    public void SetCarMovement(bool enabled)
+    {
+        carController?.SetMovementEnabled(enabled);
+        carAudio?.SetRunning(enabled);
+    }
     public void StartClock() => clock?.StartCounting();
     public void StopClock() => clock?.Stop();
     public void Break(InputAction.CallbackContext context) => carController?.Break(context);

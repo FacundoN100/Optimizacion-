@@ -60,7 +60,7 @@ public sealed class SkinSelectorUI
     private void SaveSelection()
     {
         PlayerPrefs.SetInt("SelectedSkinIndex", currentSkin);
-        PlayerPrefs.SetString(SkinPreferenceKey, materialAddress[currentSkin]);
+        PlayerPrefs.SetString(SkinPreferenceKey, CarMaterialAddress.Resolve(materialAddress[currentSkin]));
         PlayerPrefs.Save();
     }
 }

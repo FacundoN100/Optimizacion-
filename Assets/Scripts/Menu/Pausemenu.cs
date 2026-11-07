@@ -39,6 +39,7 @@ public class PauseMenu : IDisposable
     private void Pause()
     {
         isPaused = true;
+        if (ServiceLocator.TryGet<IGameAudio>(out var audio)) audio.SetPaused(true);
         pauseCanvas.enabled = true;
         // PENDIENTE: frenar la lógica del juego cuando esté el Custom Update Manager.
     }
@@ -46,6 +47,7 @@ public class PauseMenu : IDisposable
     private void Resume()
     {
         isPaused = false;
+        if (ServiceLocator.TryGet<IGameAudio>(out var audio)) audio.SetPaused(false);
         pauseCanvas.enabled = false;
         // PENDIENTE: reanudar la lógica del juego cuando esté el Custom Update Manager.
     }

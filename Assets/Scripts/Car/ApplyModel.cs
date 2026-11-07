@@ -24,7 +24,7 @@ public sealed class ApplyModel : IDisposable
     {
         if (disposed || renderers.Length == 0) return;
         ReleaseMaterial();
-        materialAddress = PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red");
+        materialAddress = CarMaterialAddress.Resolve(PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red"));
         materialHandle = Addressables.LoadAssetAsync<Material>(materialAddress);
         materialHandle.Completed += OnMaterialLoaded;
     }
@@ -51,7 +51,7 @@ public sealed class ApplyModel : IDisposable
             Release(ref catalogHandle);
 
             ReleaseMaterial();
-            materialAddress = PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red");
+            materialAddress = CarMaterialAddress.Resolve(PlayerPrefs.GetString(SkinPreferenceKey, "Color_Red"));
             cacheHandle = Addressables.ClearDependencyCacheAsync(materialAddress, false);
             yield return cacheHandle;
             if (disposed) yield break;

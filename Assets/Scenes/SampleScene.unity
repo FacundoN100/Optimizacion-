@@ -2172,6 +2172,7 @@ MonoBehaviour:
     enemies:
       enemyPrefab: {fileID: 3968606861482404922, guid: 3523bc1776d649ac8f109d2781e21d2f,
         type: 3}
+      navigationData: {fileID: 23800000, guid: d15fe52dbef0f2c4cbc511136d194308, type: 2}
       spawnPoints:
       - {fileID: 1821517692}
       - {fileID: 1570673487}

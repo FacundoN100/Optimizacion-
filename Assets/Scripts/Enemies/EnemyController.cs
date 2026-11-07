@@ -16,6 +16,9 @@ public class EnemyController
     private readonly DecisionNode tree;
     private readonly EnemyContext context;
     private readonly PoliceLights policeLights;
+    private readonly VehicleAudio audio;
+    private readonly EnemyNavigation navigation;
+    private float blockedTime;
 
     private Mode mode;
     private int waypointIndex;
@@ -27,7 +30,7 @@ public class EnemyController
     public Collider Collider { get; }
 
     public EnemyController(GameObject instance, Rigidbody playerBody, Transform[] patrolPoints,
-        EnemySettings settings, DecisionNode tree)
+        EnemySettings settings, DecisionNode tree, EnemyNavigation navigation = null)
     {
         transform = instance.transform;
         body = instance.GetComponent<Rigidbody>();
@@ -36,7 +39,10 @@ public class EnemyController
         this.patrolPoints = patrolPoints;
         this.settings = settings;
         this.tree = tree;
+        this.navigation = navigation;
         policeLights = new PoliceLights(instance.transform, settings.PoliceLightTiming);
+        if (ServiceLocator.TryGet<IGameAudio>(out var gameAudio))
+            audio = gameAudio.CreateVehicleAudio(body, true, settings.Speed * RamSpeedMultiplier);
 
         context = new EnemyContext { self = transform, player = playerBody.transform, los = settings.LineOfSight };
 
@@ -49,6 +55,11 @@ public class EnemyController
 
     public void SetMode(Mode newMode)
     {
+        if (newMode != mode)
+        {
+            blockedTime = 0f;
+            navigation?.Invalidate();
+        }
         if (newMode == Mode.Pursue || newMode == Mode.Attack)
         {
             lastSeenPosition = context.player.position;
@@ -70,6 +81,10 @@ public class EnemyController
             return;
         }
 
+        Vector3 horizontalVelocity = body.velocity;
+        horizontalVelocity.y = 0f;
+        float minSpeed = settings.Speed * PatrolSpeedMultiplier * StuckSpeedFactor;
+        blockedTime = horizontalVelocity.sqrMagnitude < minSpeed * minSpeed ? blockedTime + deltaTime : 0f;
         decisionTimer -= deltaTime;
         if (decisionTimer <= 0f)
         {
@@ -86,14 +101,13 @@ public class EnemyController
                 Patrol(deltaTime);
                 break;
             case Mode.Pursue:
-                Vector3 pursueDirection = SteeringBehaviour.Pursue(transform, context.player, playerBody,
+                Vector3 pursueTarget = SteeringBehaviour.CalculateFuture(transform, context.player, playerBody,
                     settings.MaxPredictionTime, settings.SlowRadius);
-                Move(pursueDirection, settings.Speed, deltaTime);
+                NavigateTo(pursueTarget, settings.Speed, deltaTime);
                 lastSeenPosition = context.player.position;
                 break;
             case Mode.Attack:
-                Vector3 attackDirection = SteeringBehaviour.Seek(transform, context.player.position);
-                Move(attackDirection, settings.Speed * RamSpeedMultiplier, deltaTime);
+                NavigateTo(context.player.position, settings.Speed * RamSpeedMultiplier, deltaTime);
                 lastSeenPosition = context.player.position;
                 break;
             case Mode.Search:
@@ -119,7 +133,8 @@ public class EnemyController
     {
         mode = Mode.Stopped;
         policeLights.Stop();
-        body.velocity = Vector3.zero;
+        audio?.SetRunning(false);
+        if (body != null) body.velocity = Vector3.zero;
     }
 
     private void Patrol(float deltaTime)
@@ -134,7 +149,7 @@ public class EnemyController
             target = patrolPoints[waypointIndex].position;
         }
 
-        Move(SteeringBehaviour.Seek(transform, target), settings.Speed * PatrolSpeedMultiplier, deltaTime);
+        NavigateTo(target, settings.Speed * PatrolSpeedMultiplier, deltaTime);
     }
 
     private void Search(float deltaTime)
@@ -150,7 +165,7 @@ public class EnemyController
             return;
         }
 
-        Move(SteeringBehaviour.Seek(transform, lastSeenPosition), settings.Speed, deltaTime);
+        NavigateTo(lastSeenPosition, settings.Speed, deltaTime);
     }
 
     private void NextWaypoint()
@@ -164,11 +179,13 @@ public class EnemyController
             next = waypointIndex + patrolStep;
         }
         waypointIndex = next;
+        navigation?.Invalidate();
     }
 
     private void ReversePatrol()
     {
         patrolStep = -patrolStep;
+        blockedTime = 0f;
         NextWaypoint();
     }
 
@@ -201,10 +218,15 @@ public class EnemyController
 
     private bool IsStuck()
     {
-        Vector3 horizontalVelocity = body.velocity;
-        horizontalVelocity.y = 0f;
-        float minSpeed = settings.Speed * PatrolSpeedMultiplier * StuckSpeedFactor;
-        return horizontalVelocity.sqrMagnitude < minSpeed * minSpeed;
+        return blockedTime >= 1.2f;
+    }
+
+    private void NavigateTo(Vector3 target, float speed, float deltaTime)
+    {
+        Vector3 direction = navigation != null
+            ? navigation.Direction(Collider.bounds.center, target, speed, deltaTime)
+            : SteeringBehaviour.Seek(transform, target);
+        Move(direction, speed, deltaTime);
     }
 
     private void Move(Vector3 direction, float speed, float deltaTime)

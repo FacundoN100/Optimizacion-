@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 [Serializable]
 public sealed class CarController
 {
+    private const float HandbrakeDeceleration = 12f;
+
     [SerializeField] private float MoveSpeed = 50f;
     [SerializeField] private float MaxSpeed = 15f;
     [SerializeField] private float Drag = 0.98f;
@@ -27,6 +29,8 @@ public sealed class CarController
 
     public bool IsConfigured => body != null && playerInput != null;
     public Rigidbody Body => body;
+    public bool IsSkidding => smokeEmitting;
+    public float SpeedLimit => MaxSpeed;
 
     public void Initialize()
     {
@@ -76,8 +80,15 @@ public sealed class CarController
         Vector2 input = moveAction.ReadValue<Vector2>();
         Transform carTransform = body.transform;
         float steerAngle = isDrifting ? DriftSteerAngle : DriftSteerAngle / 2f;
+        Vector3 previousForce = moveForce;
         moveForce += carTransform.forward * MoveSpeed * input.y * deltaTime;
-        moveForce *= Drag;
+        if (isDrifting)
+        {
+            float brakingSpeed = Mathf.Max(0f, previousForce.magnitude - HandbrakeDeceleration * deltaTime);
+            if (Vector3.Dot(moveForce, previousForce) <= 0f) moveForce = previousForce;
+            moveForce = moveForce.normalized * brakingSpeed;
+        }
+        else moveForce *= Drag;
         moveForce = Vector3.ClampMagnitude(moveForce, MaxSpeed);
         body.AddForce(moveForce - body.velocity, ForceMode.VelocityChange);
         float signedSpeed = Vector3.Dot(moveForce, carTransform.forward);

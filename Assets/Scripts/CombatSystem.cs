@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class CombatSystem
+public class CombatSystem : IDisposable
 {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private EnemySystem enemies;
@@ -35,6 +35,12 @@ public class CombatSystem
     {
         stopped = true;
         enemies.StopAll();
+    }
+
+    public void Dispose()
+    {
+        stopped = true;
+        enemies?.Dispose();
     }
 
     private void OnPlayerDied()

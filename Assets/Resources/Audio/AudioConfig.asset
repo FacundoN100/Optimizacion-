@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcd70167abc423f9e024d71de0bd444, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  menuMusic: {fileID: 8300000, guid: 02b83ca4aa0c3ec4caec51762d667b70, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 822551651cfd43a47beddb117c903c3e, type: 3}
+  engine: {fileID: 8300000, guid: a617b14a65395c4469480931cb30bf07, type: 3}
+  siren: {fileID: 8300000, guid: 4bd606dcc4068f94b8ce07b43604ed11, type: 3}
+  buttonClick: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 1d044edc740fedc4cbbf7110630ded1d, type: 2}

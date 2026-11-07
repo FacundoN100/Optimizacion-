@@ -1,42 +1,44 @@
 using UnityEngine;
 
-// Bootstrap / composition root: el punto de arranque del juego.
-// Es el ÚNICO Singleton permitido por la consigna. Existe para garantizar que
-// haya un solo Bootstrap vivo aunque se vuelva al menú, NO para que otros
-// sistemas accedan a cosas a través de él: para eso está el ServiceLocator.
 public class Bootstrap : MonoBehaviour
 {
     public static Bootstrap Instance { get; private set; }
+    private AudioManager audio;
+    private CustomUpdateManager updates;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void EnsureExists()
+    {
+        if (Instance == null) new GameObject("Bootstrap").AddComponent<Bootstrap>();
+    }
 
     private void Awake()
     {
-        // Si ya hay un Bootstrap vivo (por ejemplo, al volver al menú),
-        // este es un duplicado: se destruye y no registra nada.
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-
-        // Este objeto sobrevive a los cambios de escena, así los servicios
-        // que registra siguen funcionando durante todo el juego.
         DontDestroyOnLoad(gameObject);
-
-        RegisterServices();
+        audio = new AudioManager(gameObject, Resources.Load<AudioConfig>("Audio/AudioConfig"));
+        ServiceLocator.Register<IAudioSettings>(audio);
+        ServiceLocator.Register<IGameAudio>(audio);
+        updates = new CustomUpdateManager((delta, unscaled) => audio.Tick(unscaled), null);
     }
 
-    // Acá se crean los servicios y se anotan en el Service Locator.
-    // Cada servicio nuevo del juego se agrega en este método.
-    private void RegisterServices()
+    private void OnApplicationPause(bool paused)
     {
-        // Caching (Unidad 02): el AudioSource se busca una sola vez.
-        AudioSource musicSource = GetComponent<AudioSource>();
+        if (paused && Instance == this) PlayerPrefs.Save();
+    }
 
-        // Se registra con su INTERFAZ, no con la clase concreta.
-        // El <IAudioSettings> es obligatorio: sin él quedaría registrado como
-        // AudioSettingsService y Get<IAudioSettings>() no lo encontraría.
-        ServiceLocator.Register<IAudioSettings>(new AudioSettingsService(musicSource));
+    private void OnDestroy()
+    {
+        if (Instance != this) return;
+        updates?.Dispose();
+        ServiceLocator.Unregister<IGameAudio>(audio);
+        ServiceLocator.Unregister<IAudioSettings>(audio);
+        audio?.Dispose();
+        Instance = null;
     }
 }

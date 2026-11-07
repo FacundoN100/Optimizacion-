@@ -58,7 +58,7 @@ public sealed class ScriptMenu
 
     public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
+        if (ServiceLocator.TryGet<IAudioSettings>(out var audio)) audio.SetMasterVolume(volume);
     }
 
     public void SetFullscreen(bool fullscreen)
