@@ -18,20 +18,10 @@ public sealed class ScriptMenu
     public void Initialize(IAudioSettings audioSettings)
     {
         if (volumeSlider != null && volumeSlider.IsConfigured) volumeSlider.Initialize(audioSettings);
-
-        int anchoObjetivo = 1334;
-        int altoObjetivo = 720;
-
-        if (Screen.currentResolution.width >= anchoObjetivo)
-        {
-            Screen.SetResolution(anchoObjetivo, altoObjetivo, true);
-        }
-        Application.targetFrameRate = 63;
     }
     public void Play()
     {
-        MenuPanel.SetActive(false);
-        SkinPanel.SetActive(true);
+        SceneManager.LoadScene("Garage");
     }
 
     public void BackSkins()

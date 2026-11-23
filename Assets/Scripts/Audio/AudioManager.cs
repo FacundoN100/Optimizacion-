@@ -70,7 +70,9 @@ public sealed class AudioManager : IGameAudio, IDisposable
         }
         BindButtons();
         SetPaused(false);
-        SetGameplayMusic(scene.name != "MainMenu");
+        // Menu y garaje comparten la pista y la misma fuente persistente.
+        // SetGameplayMusic conserva la posicion cuando el clip no cambia.
+        SetGameplayMusic(scene.name != "MainMenu" && scene.name != "Garage");
     }
 
     public void SetGameplayMusic(bool gameplay)

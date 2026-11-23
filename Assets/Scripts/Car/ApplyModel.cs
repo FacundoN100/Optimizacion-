@@ -18,6 +18,8 @@ public sealed class ApplyModel : IDisposable
     public ApplyModel(Renderer[] targets)
     {
         renderers = targets ?? Array.Empty<Renderer>();
+        foreach (Renderer target in renderers)
+            if (target != null) CarModelChoice.ApplyAccessories(target.transform);
     }
 
     public void LoadMaterial()

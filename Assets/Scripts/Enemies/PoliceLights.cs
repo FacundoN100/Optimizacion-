@@ -3,14 +3,13 @@ using UnityEngine;
 
 public sealed class PoliceLights
 {
-    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
-    private static readonly Color Red = new Color(1f, 0.025f, 0.025f, 1f);
-    private static readonly Color Blue = new Color(0.025f, 0.15f, 1f, 1f);
-    private readonly Renderer redLens;
-    private readonly Renderer blueLens;
-    private readonly Light beacon;
-    private readonly MaterialPropertyBlock redProperties;
-    private readonly MaterialPropertyBlock blueProperties;
+    private static readonly int Pulse = Shader.PropertyToID("_Pulse");
+    public const string RigName = "Police Lights";
+    public const string GlassName = "Cristales";
+    public const string SpillName = "Reflejo en el asfalto";
+    private readonly Renderer glass;
+    private readonly Renderer spill;
+    private readonly MaterialPropertyBlock properties;
     private readonly float onTime;
     private readonly float beatLength;
     private float elapsed;
@@ -22,16 +21,12 @@ public sealed class PoliceLights
         onTime = Mathf.Max(0.02f, timing != null ? timing.TimerOnLength : 0.09f);
         beatLength = onTime + Mathf.Max(0.02f, timing != null ? timing.TimerOffLength : 0.06f);
         elapsed = -Mathf.Max(0f, timing != null ? timing.StartDelay : 0f);
-        Transform rig = car != null ? car.Find("Police Lights") : null;
+        Transform rig = car != null ? car.Find(RigName) : null;
         if (rig != null)
         {
-            Transform red = rig.Find("Red Beacon");
-            Transform blue = rig.Find("Blue Beacon");
-            if (red != null) redLens = red.GetComponent<Renderer>();
-            if (blue != null) blueLens = blue.GetComponent<Renderer>();
-            beacon = rig.GetComponentInChildren<Light>(true);
-            redProperties = new MaterialPropertyBlock();
-            blueProperties = new MaterialPropertyBlock();
+            glass = rig.Find(GlassName)?.GetComponent<Renderer>();
+            spill = rig.Find(SpillName)?.GetComponent<Renderer>();
+            properties = new MaterialPropertyBlock();
         }
         ApplyState(0);
         Tick(0f);
@@ -39,7 +34,7 @@ public sealed class PoliceLights
 
     public void Tick(float deltaTime)
     {
-        if (stopped || redLens == null || blueLens == null) return;
+        if (stopped || glass == null) return;
         elapsed += Mathf.Max(0f, deltaTime);
         if (elapsed < 0f) return;
         float cycleTime = Mathf.Repeat(elapsed, beatLength * 4f);
@@ -58,20 +53,9 @@ public sealed class PoliceLights
     {
         if (state == currentState) return;
         currentState = state;
-        if (redLens != null)
-        {
-            redProperties.SetColor(BaseColor, state == 1 ? Red : new Color(0.07f, 0.002f, 0.002f, 1f));
-            redLens.SetPropertyBlock(redProperties);
-        }
-        if (blueLens != null)
-        {
-            blueProperties.SetColor(BaseColor, state == 2 ? Blue : new Color(0.002f, 0.01f, 0.07f, 1f));
-            blueLens.SetPropertyBlock(blueProperties);
-        }
-        if (beacon != null)
-        {
-            beacon.enabled = state != 0;
-            if (state != 0) beacon.color = state == 1 ? Red : Blue;
-        }
+        if (properties == null) return;
+        properties.SetVector(Pulse, new Vector4(state == 1 ? 1f : 0f, state == 2 ? 1f : 0f, 0f, 0f));
+        if (glass != null) glass.SetPropertyBlock(properties);
+        if (spill != null) spill.SetPropertyBlock(properties);
     }
 }

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour, IGameplayControl
     [SerializeField] private Clock clock;
     [SerializeField] private ScriptMenu menu;
     [SerializeField] private SkinSelectorUI skinSelector;
+    [SerializeField] private GarageController garage = new GarageController();
+    [SerializeField] private MenuAtmosphere menuAtmosphere = new MenuAtmosphere();
     [SerializeField] private GameObject[] modelObjects;
     [SerializeField] private FinishLine finishLine;
     [SerializeField] private PointsArc[] collectibleArcs;
@@ -39,14 +41,19 @@ public class GameManager : MonoBehaviour, IGameplayControl
         if (clock != null && clock.IsConfigured) clock.Initialize(OnTimeExpired);
         if (menu != null && menu.IsConfigured) menu.Initialize(ServiceLocator.Get<IAudioSettings>());
         if (skinSelector != null && skinSelector.IsConfigured) skinSelector.Initialize();
+        if (garage != null && garage.IsConfigured) garage.Initialize();
+        if (menuAtmosphere != null && menuAtmosphere.IsConfigured) menuAtmosphere.Initialize();
         ConfigureCollectibles();
         ConfigurePointArcs();
         ConfigureModels();
         if (combat != null && combat.IsConfigured && carController != null && carController.IsConfigured)
             combat.Initialize(carController.Body, OnPlayerDied);
-        if ((carController != null && carController.IsConfigured)
-            || (clock != null && clock.IsConfigured))
-            updateManager = new CustomUpdateManager(TickFrame, TickPhysics, TickRender);
+        bool hasVehicle = carController != null && carController.IsConfigured;
+        if (hasVehicle
+            || (clock != null && clock.IsConfigured)
+            || (menuAtmosphere != null && menuAtmosphere.IsConfigured))
+            updateManager = new CustomUpdateManager(TickFrame,
+                hasVehicle ? TickPhysics : null, hasVehicle ? TickRender : null);
 
         
         ServiceLocator.Register<IGameplayControl>(this);
@@ -105,6 +112,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
         if (this == null || !isActiveAndEnabled) return;
         clock?.Tick(deltaTime, unscaledDeltaTime);
         controlsFeedback?.Tick(unscaledDeltaTime);
+        menuAtmosphere?.Tick(unscaledDeltaTime);
     }
 
     private void TickPhysics(float deltaTime)
@@ -166,6 +174,7 @@ public class GameManager : MonoBehaviour, IGameplayControl
         StopAllCoroutines();
         model?.Dispose();
         menu?.Dispose();
+        menuAtmosphere?.Dispose();
     }
 
     public void SetCarMovement(bool enabled)
@@ -183,6 +192,10 @@ public class GameManager : MonoBehaviour, IGameplayControl
     }
 
     public void Play() => menu?.Play();
+    public void GarageNext() => garage?.Next();
+    public void GaragePrevious() => garage?.Previous();
+    public void GarageBack() => garage?.Back();
+    public void GarageStart() => garage?.StartGame();
     public void BackSkins() => menu?.BackSkins();
     public void StartGame() => menu?.StartGame();
     public void Options() => menu?.Options();

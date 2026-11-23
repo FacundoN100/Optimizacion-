@@ -21,6 +21,8 @@ public class Bootstrap : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = Application.isMobilePlatform ? 60 : -1;
         audio = new AudioManager(gameObject, Resources.Load<AudioConfig>("Audio/AudioConfig"));
         ServiceLocator.Register<IAudioSettings>(audio);
         ServiceLocator.Register<IGameAudio>(audio);
